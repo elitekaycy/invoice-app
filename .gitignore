@@ -1,0 +1,6 @@
+preview.jpg
+
+# ignore frontend node modules
+frontend/node_modules
+
+data.json
