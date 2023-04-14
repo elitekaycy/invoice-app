@@ -1,8 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+:root {
+  --invoice-purple: #7C5DFA;
+  --invoice-purple-light: #9277FF;
+  --invoice-gray: #1E2139;
+  --invoice-gray-light: #252945;
+  --invoice-light-hover: #888EB0;
+  --invoice-light: #DFE3FA;
+  --invoice-dark-default: #7E88C3;
+  --invoice-black: #0C0E16;  
+  --invoice-red: #EC5757;
+  --invoice-red-light: #9277FF;
+  --invoice-light-bg: #F8F8FB;
+  --invoice-dark-bg: #141625;
+
+}
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'League Spartan', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +28,47 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+.invoice-h1 {
+   font-weight: bold;
+   font-size: 32px;
+   line-height: 36px;
+   letter-spacing: -1px;
+}
+
+.invoice-h2 {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 22px;
+  letter-spacing: -0.63px;
+}
+
+.invoice-h3 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.8px;
+}
+
+.invoice-h3-small {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+}
+
+.invoice-body-1 {
+  font-weight: medium;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+}
+
+.invoice-body-2 {
+  font-weight: medium;
+  font-size: 11px;
+  line-height: 18px;
+  letter-spacing: -0.23px;
 }
