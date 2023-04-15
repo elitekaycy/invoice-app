@@ -1,0 +1,13 @@
+.dark-mode-img {
+    width: 20px;
+    height: 20px;
+}
+
+@media(max-width: 768px) { 
+  
+    .dark-mode-img {
+        width: 19px;
+        height: 19px;
+    }
+
+}

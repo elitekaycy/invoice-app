@@ -2,6 +2,8 @@
 
 
 :root {
+  --invoice-sidebar-bg: #373B53;
+  --invoice-sidebar-bg-dark: #1E2139;
   --invoice-purple: #7C5DFA;
   --invoice-purple-light: #9277FF;
   --invoice-gray: #1E2139;
@@ -71,4 +73,11 @@ code {
   font-size: 11px;
   line-height: 18px;
   letter-spacing: -0.23px;
+}
+
+.layout {
+   min-height:  100vh;
+   height: 100%;
+   width: 100vw;
+   background-color: var(--invoice-light-bg)
 }
