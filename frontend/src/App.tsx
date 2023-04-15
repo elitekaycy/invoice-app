@@ -1,9 +1,12 @@
 import React from 'react';
+import { SideNav } from './components';
 
 
 function App() {
   return (
-   <div className='invoice-h1' style={{ color: 'var(--invoice-red)'}}>helloworld</div>
+    <div className='layout'>
+      <SideNav />
+    </div>
   );
 }
 
