@@ -3,24 +3,15 @@ import logo from '../../assets/logo.svg';
 import avatar from '../../assets/image-avatar.jpg';
 import React from 'react';
 import { DarkModeUI } from '../DarkModeUI/DarkModeUI';
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { ThemeContextDefault } from '../../context/ThemeContext';
 
 export const SideNav = (): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
-  const [matches, setMatches] = useState<boolean>(
-    window.matchMedia('(max-width: 768px)').matches
-  );
-
-  useEffect(() => {
-    window
-      .matchMedia('(max-width: 768px)')
-      .addEventListener('change', (e) => setMatches(e.matches));
-  });
 
   return (
     <div
-      className={`${!matches ? 'sidebar' : 'navbar'} 
+      className={`sidebar 
          ${theme?.theme === 'light' ? 'sidebar-light' : 'sidebar-dark'}
         `}
     >

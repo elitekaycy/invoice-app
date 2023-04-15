@@ -15,16 +15,7 @@
     background-color: var(--invoice-gray)
 }
 
-.navbar {
-    display: none;
-    width: 100vw;
-    height: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: var(--invoice-sidebar-bg)
 
-}
 
 .logo-container {
     width: 103px;
@@ -90,7 +81,10 @@
 @media(max-width: 768px) {
 
     .sidebar {
-        display: none;
+       width: 100vw;
+       border-radius: 0px;
+       height: 80px;
+       flex-direction: row;
     }
     
     .logo {
@@ -135,9 +129,9 @@
 
 }
 
-
 @media (max-width: 375px) {
-    .navbar {
+    .sidebar {
+        width: 100vw;
         height: 72px;
     }
 
@@ -147,7 +141,8 @@
     }
 
     .logo-mirage {
-        width: 72px;
+        width: 100%;
+        max-width: 72px;
         height: 36px;
     }
 
