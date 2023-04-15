@@ -11,7 +11,7 @@ export const SideNav = (): JSX.Element => {
 
   return (
     <div
-      className={`sidebar 
+      className={`sidebar x
          ${theme?.theme === 'light' ? 'sidebar-light' : 'sidebar-dark'}
         `}
     >
