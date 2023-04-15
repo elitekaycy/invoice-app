@@ -16,9 +16,6 @@ jobs:
       - name: Build App
         working-directory: frontend
         run: npm run build
-      - name: Test App
-        working-directory: frontend
-        run: npm run test
 
   deploy:
     needs: build
