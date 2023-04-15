@@ -1,0 +1,13 @@
+.layout {
+    min-height:  100vh;
+    height: 100%;
+    width: 100vw;
+}
+
+.light-mode {
+    background-color: var(--invoice-light-bg)
+}
+
+.dark-mode {
+    background-color: var(--invoice-dark-bg)
+}

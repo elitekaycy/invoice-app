@@ -1,12 +1,11 @@
 import React from 'react';
-import { SideNav } from './components';
-
+import { Layout, SideNav } from './components';
 
 function App() {
   return (
-    <div className='layout'>
+    <Layout>
       <SideNav />
-    </div>
+    </Layout>
   );
 }
 

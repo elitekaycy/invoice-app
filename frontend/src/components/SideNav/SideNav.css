@@ -5,7 +5,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.sidebar-light {
     background-color: var(--invoice-sidebar-bg)
+}
+
+.sidebar-dark {
+    background-color: var(--invoice-gray)
 }
 
 .navbar {

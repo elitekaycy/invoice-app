@@ -1,6 +1,7 @@
 .dark-mode-img {
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 
 @media(max-width: 768px) { 
