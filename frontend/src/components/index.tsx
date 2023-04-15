@@ -1,3 +1,4 @@
-import { SideNav } from "./SideNav/SideNav";
+import { SideNav } from './SideNav/SideNav';
+import { Layout } from './Layout/Layout';
 
-export { SideNav }
+export { SideNav, Layout };

@@ -74,10 +74,3 @@ code {
   line-height: 18px;
   letter-spacing: -0.23px;
 }
-
-.layout {
-   min-height:  100vh;
-   height: 100%;
-   width: 100vw;
-   background-color: var(--invoice-light-bg)
-}
