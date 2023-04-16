@@ -2,6 +2,8 @@
     min-height:  100vh;
     height: 100%;
     width: 100vw;
+    display: flex;
+    flex-direction: row;
 }
 
 .light-mode {
@@ -10,4 +12,10 @@
 
 .dark-mode {
     background-color: var(--invoice-dark-bg)
+}
+
+@media (max-width: 768px){
+    .layout {
+        flex-direction: column;
+    }
 }

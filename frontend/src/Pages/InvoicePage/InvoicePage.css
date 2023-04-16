@@ -1,0 +1,7 @@
+.invoice-layout {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    min-height: 100vh;
+    height: 100%
+}
