@@ -1,0 +1,11 @@
+.invoice-layout {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    min-height: 100vh;
+    height: 100%
+}
+
+.invoice-main {
+    margin-top: 100px;
+}

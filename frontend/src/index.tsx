@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeContext } from './context/ThemeContext';
+import '@fontsource/spartan';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
