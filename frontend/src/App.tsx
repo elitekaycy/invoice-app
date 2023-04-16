@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, SideNav } from './components';
-import { InvoicePage } from './Pages'
+import { InvoicePage } from './Pages';
 
 function App() {
   return (

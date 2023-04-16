@@ -1,0 +1,81 @@
+.invoice-btn-shape {
+    width: 150px;
+    height: 48px;
+    background-color: var(--invoice-purple);
+    border: 0px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 20px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn-default {
+    width: 131px;
+    height: 48px;
+    border: 0px;
+    border-radius: 50px;
+}
+
+
+/* mark as paid button */
+.mrkbtn {
+    cursor: pointer;
+    background-color: var(--invoice-purple);
+}
+
+.mrkbtn:hover {
+    background-color: var(--invoice-purple-light);
+}
+
+/* mark as button end */
+
+.invoice-btn-shape:hover {
+    background-color: var(--invoice-purple-light)
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    border: 0px;
+    border-radius: 50px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-image {
+     width: 10px;
+     height: 10px;
+}
+
+.btn-center {
+    text-align: center;
+    color: white;
+}
+
+.btn-text {
+    color: white;
+}
+
+.btn-text::before {
+    content: 'New Invoice'
+}
+
+
+@media (max-width: 375px) {
+    .invoice-btn-shape {
+        width: 90px;
+        height: 44px;
+        padding-left: 6px;
+        padding-right: 14px;
+    }
+
+    .btn-text::before {
+        content: 'New'
+    }
+}

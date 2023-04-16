@@ -1,3 +1,3 @@
-import { InvoicePage } from "./InvoicePage/InvoicePage";
+import { InvoicePage } from './InvoicePage/InvoicePage';
 
-export { InvoicePage }
+export { InvoicePage };
