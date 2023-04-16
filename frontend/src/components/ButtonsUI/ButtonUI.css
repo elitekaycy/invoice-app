@@ -20,6 +20,35 @@
     border-radius: 50px;
 }
 
+.btn-md {
+    width: 133px;
+    height: 48px;
+    border: 0px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.draft-btn-light {
+   background-color: #373B53;
+   color: #888EB0;
+}
+
+.draft-btn-light:hover{
+   background-color: #373B53;
+   color: #DFE3FA;
+}
+
+.draft-btn-dark {
+   background-color: #0C0E16;
+   color: #888EB0;
+}
+
+.draft-btn-dark:hover {
+    background-color: #1E2139;
+    color: var(--invoice-light);
+}
+
+
 
 /* mark as paid button */
 .mrkbtn {
@@ -32,6 +61,39 @@
 }
 
 /* mark as button end */
+
+
+/* edit Button */
+.btn-small {
+    width: 73px;
+    height: 48px;
+    border-radius: 50px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.edit-btn-light {
+    background-color: #F9FAFE;
+    color: var(--invoice-dark-default);
+}
+
+.edit-btn-light:hover {
+    background-color: var(--invoice-gray-light);
+    color: var(--invoice-light);
+}
+
+.edit-btn-dark {
+    background-color: var(--invoice-light);
+    color: var(--invoice-dark-default)
+}
+
+.edit-btn-dark:hover {
+    background-color: #FFFFF;
+    color: var(--invoice-light);
+}
+
+/* edit button end */
+
 
 .invoice-btn-shape:hover {
     background-color: var(--invoice-purple-light)
@@ -55,6 +117,9 @@
 
 .btn-center {
     text-align: center;
+}
+
+.btn-white {
     color: white;
 }
 

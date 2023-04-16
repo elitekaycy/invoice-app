@@ -1,6 +1,6 @@
 import React from 'react';
 import './InvoicePage.css';
-import { InvoiceButton, MarkButton } from '../../components';
+import { EditButton, InvoiceButton, MarkButton, SaveDraftButton } from '../../components';
 
 export const InvoicePage: React.FC = (): JSX.Element => {
   return (
@@ -9,6 +9,8 @@ export const InvoicePage: React.FC = (): JSX.Element => {
         <div>hello</div>
         {/* <InvoiceButton /> */}
         <MarkButton />
+        <EditButton />
+        <SaveDraftButton />
       </div>
     </div>
   );
