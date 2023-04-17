@@ -8,7 +8,7 @@ const router = createBrowserRouter([
     element: <InvoicePage />,
   },
   {
-    path: 'edit',
+    path: 'invoice/:id',
     element: <EditInvoicePage />,
   },
 ]);

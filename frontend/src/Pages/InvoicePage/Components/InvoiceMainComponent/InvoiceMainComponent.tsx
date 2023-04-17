@@ -11,12 +11,15 @@ import {
   PaymentType,
   InvoiceNextType,
 } from './InvoiceMainTypes';
+import { useNavigate } from 'react-router-dom';
 
 export const InvoiceMainComponent: React.FC<myProps> = (
   props: myProps
 ): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
   const { id, status, clientName, total, paymentDue } = props;
+
+  const navigate = useNavigate();
 
   const StatusComp: React.FC<IStatus> = ({ state }: IStatus): JSX.Element => {
     return (
@@ -107,7 +110,7 @@ export const InvoiceMainComponent: React.FC<myProps> = (
   };
 
   return (
-    <div>
+    <div onClick={() => navigate(`invoice/${id}`)}>
       <div
         className={`invoice-page-comp ${
           theme?.theme === 'light' ? 'invoice-comp-light' : 'invoice-comp-dark'

@@ -14,8 +14,13 @@
     height: 100%;
 }
 
+.invoice-empty {
+    display: inline-block;
+}
+
 .invoice-sub-main {
     margin-top: 55px;
+    text-align: center;
 }
 
 .invoice-header {
@@ -67,7 +72,9 @@
 @media (max-width: 765px){
     .invoice-main {
         margin-top: 60px;
+        margin-right: 20px;
     }
+    
 }
 
 @media (max-width: 500px){
