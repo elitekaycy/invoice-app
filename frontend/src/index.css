@@ -1,5 +1,20 @@
 /* @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
-@import url('https://fonts.googleapis.com/css?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap'); */
+
+@font-face {
+  font-family: 'Spartan';
+  src: url('./assets/fonts/Spartan-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Spartan';
+  src: url('./assets/fonts/Spartan-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 
 :root {
   --invoice-sidebar-bg: #373B53;
@@ -26,6 +41,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: inherit;
+  overflow-x: hidden;
 }
 
 code {
@@ -37,7 +53,7 @@ code {
 .invoice-h1 {
    font-weight: bold;
    font-size: 32px;
-   line-height: 36px;
+   line-height: 30px;
    letter-spacing: -1px;
 }
 
