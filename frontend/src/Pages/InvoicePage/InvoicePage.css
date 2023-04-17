@@ -3,9 +3,87 @@
     justify-content: center;
     display: flex;
     min-height: 100vh;
-    height: 100%
+    height: 100%;
 }
 
 .invoice-main {
-    margin-top: 100px;
+    margin-top: 20px;
+    max-width: 730px;
+    padding: 40px;
+    width: 100%;
+    height: 100%;
+}
+
+.invoice-sub-main {
+    margin-top: 55px;
+}
+
+.invoice-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.invoice-main-text {
+    color: var(--invoice-black)
+}
+
+.invoice-main-text-dark {
+    color: #FFFFFF;
+}
+
+.invoice-title {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 30px;
+    letter-spacing: -1px;
+}
+
+.invoice-subtitle {
+    font-weight: medium;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    margin-top: -12px;
+}
+
+.invoice-subtitle::after {
+    content: 'total invoices'
+}
+
+.invoice-subtitle::before {
+    content: 'There are '
+}
+
+.invoice-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media (max-width: 765px){
+    .invoice-main {
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: 500px){
+    .invoice-title {
+       font-size: 20px;
+       letter-spacing: -0.63px;
+    }
+    
+    .invoice-sub-main {
+        margin-right: 35px;
+    }
+    .invoice-subtitle::before {
+        content: ''
+    }
+
+    .invoice-subtitle::after {
+        content: 'invoices'
+    }
 }
