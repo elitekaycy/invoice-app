@@ -1,0 +1,50 @@
+.edit-invoice-page-comp {
+    height: 72px;
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 0px;
+    border-radius: 8px;
+    /* padding-left: 15px;
+    padding-right: 15px; */
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 16px;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0px 10px 10px -10px hsl(231, 38%, 45%, 10.04%);
+    cursor: pointer;
+    
+}
+
+.edit-invoice-light {
+    background-color: #FFFFFF
+}
+
+.edit-invoice-dark {
+    background-color: var(--invoice-sidebar-bg-dark);
+}
+
+.invoice-return-light {
+    color: var(--invoice-black)
+}
+
+.invoice-return-dark {
+    color: #FFFFFF
+}
+
+.invoice-return:hover {
+    color: var(--invoice-dark-default)
+}
+
+.navigator {
+    cursor: pointer;
+    margin-bottom: 32px;
+}
+
+.navigator:hover {
+    color: var(--invoice-dark-default)
+}
+
+.previous {
+    margin-right: 20px;
+}

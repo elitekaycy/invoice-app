@@ -151,5 +151,11 @@
         padding-right: 20px;
         justify-content: space-between;
     }
+
+    .invoice-due-total {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 

@@ -8,12 +8,13 @@ import {
 } from '../../components';
 import { ThemeContextDefault } from '../../context/ThemeContext';
 import data from '../../assets/data.json';
+import emptyInvoice from '../../assets/illustration-empty.svg';
 import { InvoiceDataType } from './InvoiceTypes';
 import { InvoiceMainComponent } from './Components/InvoiceMainComponent/InvoiceMainComponent';
 
 export const InvoicePage: React.FC = (): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
-  const [invoices, setInvoices] = useState<InvoiceDataType[]>(
+  const [invoices, setInvoices] = useState<InvoiceDataType[] | []>(
     data.map((file) => ({
       id: file?.id,
       paymentDue: file?.paymentDue,
@@ -57,6 +58,13 @@ export const InvoicePage: React.FC = (): JSX.Element => {
                 />
               );
             })}
+          {invoices.length <= 0 ? (
+            <div className="invoice-empty">
+              <img src={emptyInvoice} alt="invoice-page" />
+            </div>
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </div>
