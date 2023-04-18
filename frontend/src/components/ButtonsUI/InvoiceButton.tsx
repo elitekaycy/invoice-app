@@ -3,9 +3,11 @@ import './ButtonUI.css';
 import plusIcon from '../../assets/icon-plus.svg';
 import { BtnProps } from './types';
 
-export const InvoiceButton: React.FC = ({ onClick }: BtnProps): JSX.Element => {
+export const InvoiceButton: React.FC<BtnProps> = ({
+  handleClick,
+}: BtnProps): JSX.Element => {
   return (
-    <button className="invoice-btn-shape" onClick={onClick}>
+    <button className="invoice-btn-shape" onClick={handleClick}>
       <span className="btn-icon">
         <img className="btn-img" src={plusIcon} alt="btn-icon" />
       </span>

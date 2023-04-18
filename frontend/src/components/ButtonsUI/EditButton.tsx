@@ -2,12 +2,14 @@ import React, { useContext } from 'react';
 import { BtnProps } from './types';
 import { ThemeContextDefault } from '../../context/ThemeContext';
 
-export const EditButton: React.FC = ({ onClick }: BtnProps): JSX.Element => {
+export const EditButton: React.FC<BtnProps> = ({
+  handleClick,
+}: BtnProps): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
 
   return (
     <button
-      onClick={onClick}
+      onClick={handleClick}
       className={`btn-small ${
         theme?.theme === 'light' ? 'edit-btn-light' : 'edit-btn-dark'
       }`}
