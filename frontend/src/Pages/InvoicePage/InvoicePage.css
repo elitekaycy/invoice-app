@@ -84,7 +84,7 @@
     }
     
     .invoice-sub-main {
-        margin-right: 35px;
+        margin-right: 30px;
     }
     .invoice-subtitle::before {
         content: ''

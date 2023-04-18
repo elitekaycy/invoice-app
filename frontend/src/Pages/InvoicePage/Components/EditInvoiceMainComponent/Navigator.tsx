@@ -4,12 +4,21 @@ import previous from '../../../../assets/icon-arrow-left.svg';
 import { ThemeContextDefault } from '../../../../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
 
-export const Navigator: React.FC = (): JSX.Element => {
+interface NavigatorProps {
+  handleClick?: (e: any) => void | null;
+}
+
+export const Navigator: React.FC<NavigatorProps> = ({
+  handleClick,
+}: NavigatorProps): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
   const navigate = useNavigate();
 
   return (
-    <div onClick={() => navigate(-1)} className="navigator">
+    <div
+      onClick={handleClick ? (e) => handleClick(e) : () => navigate(-1)}
+      className="navigator"
+    >
       <span className="previous">
         <img src={previous} alt="go back" />
       </span>

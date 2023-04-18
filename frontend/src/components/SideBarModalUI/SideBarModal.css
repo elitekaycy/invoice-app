@@ -1,0 +1,134 @@
+.sidebar-modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -719px;
+    width: 719px;
+    border-radius: 0px 20px 20px 0px;
+    background-color: white;
+    z-index: 10;
+    height: 100vh;
+    border: 0px;
+    transition: transform 0.3s ease-in-out;
+    padding: 5px;
+}
+
+.sidebar-container {
+    margin-left: 120px;
+    margin-top: 10px;
+    margin-right: 20px;
+    height: 100vh;
+    padding: 20px;
+}
+
+.sidebar-footer {
+    width: 100%;
+    height: 110px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 14;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.sidebar-footer-light {
+    background-color: white;
+    -webkit-box-shadow: -2px -86px 187px -30px rgba(151,151,151,0.61);
+-moz-box-shadow: -2px -86px 187px -30px rgba(151,151,151,0.61);
+box-shadow: -2px -86px 187px -30px rgba(151,151,151,0.61);
+}
+
+.sidebar-footer-dark {
+    background-color: var(--invoice-dark-bg);
+    -webkit-box-shadow: -2px -86px 187px -28px rgba(0,0,0,0.32);
+-moz-box-shadow: -2px -86px 187px -28px rgba(0,0,0,0.32);
+box-shadow: -2px -86px 187px -28px rgba(0,0,0,0.32);
+}
+
+.sidebar-text-light {
+    color: var(--invoice-dark-bg)
+}
+
+.sidebar-text-dark {
+    color: #FFFFFF
+}
+
+.modal-navigator {
+    top: 80px;
+    left: 800px;
+    display: none;
+}
+
+.sidebar-modal.open {
+     transform: translateX(719px);
+  }
+  
+
+.sidebar-hidden {
+    display: none
+}
+
+
+.sidebar-modal-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(0.5px);
+    z-index: 9;
+    position: fixed;
+    top:0;
+    left: 0;
+    bottom: 0;
+}
+
+
+.sidebar-modal-light {
+   background-color: #FFFFFF;
+}
+
+.sidebar-modal-dark {
+   background-color: var(--invoice-dark-bg)
+}
+
+@media(max-width: 768px){
+    .sidebar-container {
+        margin-left: 50px;
+    }
+
+    .sidebar-modal {
+        top: 80px;
+        max-width: 80vw;
+        width: 100%;
+        left: -85vw;    
+    }
+
+    .sidebar-footer {
+        bottom: 80px;
+    }
+    .sidebar-modal.open {
+        transform: translateX(100%)
+    }
+}
+
+@media(max-width: 374px) {
+    .modal-navigator {
+        display: block;
+    }
+
+    .sidebar-container {
+        margin-left: 10px;
+    }
+
+    .sidebar-modal {
+        top: 72px;
+        width: 100%;
+        max-width: 100vw;
+        height: 100vh;
+        border-radius: 0px;
+        left: -380px;
+    }
+
+    .sidebar-modal.open {
+        transform: translateX(374px)
+    }
+}
