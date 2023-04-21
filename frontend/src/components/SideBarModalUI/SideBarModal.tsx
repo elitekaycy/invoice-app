@@ -10,20 +10,21 @@ import React, {
 import './SideBarModal.css';
 import { ThemeContextDefault } from '../../context/ThemeContext';
 import { Navigator } from '../../Pages/InvoicePage/Components/EditInvoiceMainComponent/Navigator';
+import { TextFieldDefault } from '../FormsUI/TextFieldDefault';
+import { FormHeader } from '../FormsUI/FormHeader';
+import { SideBarHeader } from './SideBarHeader';
+import { SideBarModalProps, FillFormType } from './SidebarTypes';
+import { SideBarForm } from './SideBarForm';
 
-interface SideBarModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  id?: string;
-}
 
 export const SideBarModal: React.FC<SideBarModalProps> = ({
   isOpen,
   onClose,
 }: SideBarModalProps): JSX.Element => {
+
   const theme = useContext(ThemeContextDefault);
-  const [sidebarOpen, setSideBarOpen] = useState<boolean>(isOpen);
   const sidebarRef = useRef<HTMLDivElement>(null);
+
 
   function handleClickOutside(
     event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
@@ -56,26 +57,12 @@ export const SideBarModal: React.FC<SideBarModalProps> = ({
             <Navigator handleClick={() => onClose()} />
           </div>
 
-          <div className="side-container-header">
-            <h3
-              className={`invoice-h2 ${
-                theme?.theme === 'light'
-                  ? 'sidebar-text-light'
-                  : 'sidebar-text-dark'
-              }`}
-            >
-              New Invoice
-            </h3>
-          </div>
+          <SideBarHeader header={"New Invoice"}/>
+          <SideBarForm />
+
+          
         </div>
 
-        <div
-          className={`sidebar-footer ${
-            theme?.theme === 'light'
-              ? 'sidebar-footer-light'
-              : 'sidebar-footer-dark'
-          }`}
-        ></div>
       </div>
     </div>
   );
