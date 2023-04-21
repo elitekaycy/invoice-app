@@ -16,15 +16,12 @@ import { SideBarHeader } from './SideBarHeader';
 import { SideBarModalProps, FillFormType } from './SidebarTypes';
 import { SideBarForm } from './SideBarForm';
 
-
 export const SideBarModal: React.FC<SideBarModalProps> = ({
   isOpen,
   onClose,
 }: SideBarModalProps): JSX.Element => {
-
   const theme = useContext(ThemeContextDefault);
   const sidebarRef = useRef<HTMLDivElement>(null);
-
 
   function handleClickOutside(
     event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
@@ -57,12 +54,9 @@ export const SideBarModal: React.FC<SideBarModalProps> = ({
             <Navigator handleClick={() => onClose()} />
           </div>
 
-          <SideBarHeader header={"New Invoice"}/>
+          <SideBarHeader header={'New Invoice'} />
           <SideBarForm />
-
-          
         </div>
-
       </div>
     </div>
   );
