@@ -5,6 +5,19 @@
 
 .label {
     color: var(--invoice-dark-default);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap
+}
+
+.label-error {
+    color: var(--invoice-red)
+}
+
+.unlabel-error {
+    display: none;
 }
 
 
@@ -19,11 +32,12 @@
      letter-spacing: -0.25px;
 }
 
-#text-field:invalid {
-    border: 2px solid var(--invoice-red);
-  }
+.text-field-error-light {
+    border: 1px solid var(--invoice-red);
+}
+
   
-  #email-input:invalid + label::after {
+.text-field:invalid + label::after {
     content: "can't be empty";
     color: var(--invoice-red);
   }
@@ -37,7 +51,6 @@
 
 .text-field-light {
     border: 1px solid var(--invoice-light)
-
 }
 
 .text-field-light::placeholder {
@@ -57,6 +70,11 @@
      background-color: var(--invoice-gray)
 }
 
+.text-field-error-dark {
+    color: #888EB0;
+    border: 1px solid var(--invoice-red);
+    background-color: var(--invoice-gray)
+}
 .text-field-dark:focus {
     color: #ffffff
 }

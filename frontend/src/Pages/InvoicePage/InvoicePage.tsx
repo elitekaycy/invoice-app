@@ -46,7 +46,7 @@ export const InvoicePage: React.FC = (): JSX.Element => {
             <div className="invoice-left">
               <InvoiceButton
                 handleClick={() => {
-                  document.body.classList.add('no-scroll')
+                  document.body.classList.add('no-scroll');
                   setIsInvoiceOpen(true);
                   console.log('handle click clicked ', isInvoiceOpen);
                 }}
@@ -81,8 +81,8 @@ export const InvoicePage: React.FC = (): JSX.Element => {
       <SideBarModal
         isOpen={isInvoiceOpen}
         onClose={() => {
-          document.body.classList.remove('no-scroll')
-          setIsInvoiceOpen(false)
+          document.body.classList.remove('no-scroll');
+          setIsInvoiceOpen(false);
         }}
       />
     </React.Fragment>
