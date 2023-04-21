@@ -1,3 +1,10 @@
+import React from 'react';
+
+export interface ConstraintType {
+  children: React.ReactNode;
+  wrap: boolean;
+}
+
 export interface SideBarModalProps {
   isOpen: boolean;
   onClose: () => void;

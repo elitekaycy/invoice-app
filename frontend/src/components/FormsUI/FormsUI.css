@@ -1,7 +1,9 @@
 .form-header {
     color: var(--invoice-purple);
     margin-bottom: 20px;
+    margin-top: 20px;
 }
+
 
 .label {
     color: var(--invoice-dark-default);
@@ -22,7 +24,7 @@
 
 
 .text-field {
-     width: 100%;
+    width: 100%;
      height: 48px;
      border-radius: 4px;
      padding-left: 10px;
@@ -32,8 +34,26 @@
      letter-spacing: -0.25px;
 }
 
+.text-field-wrap {
+    max-width: 152px;
+    width: 100%
+}
+
+.text-field-wrap-responsive {
+    max-width: 152px;
+    width: 100%;
+}
+
+.text-field-responsive {
+    width: 100%;
+}
+
 .text-field-error-light {
     border: 1px solid var(--invoice-red);
+}
+
+.text-field-container {
+    margin-bottom: 20px;
 }
 
   
@@ -42,12 +62,6 @@
     color: var(--invoice-red);
   }
   
-
-
-.text-field-fixed {
-    width: 152px;
-
-}
 
 .text-field-light {
     border: 1px solid var(--invoice-light)
@@ -77,4 +91,46 @@
 }
 .text-field-dark:focus {
     color: #ffffff
+}
+
+
+.form-constraint-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.inner-constraint {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+@media (max-width: 470px){
+    .form-constraint-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .inner-constraint {
+        gap: 25px;
+    }
+
+    .text-field-wrap {
+        width: 100%;
+    }
+
+    .text-field-wrap-responsive {
+        max-width: 470px;
+        width: 100%;
+    }
+
+    .inner-end-constraint {
+        width: 100%;
+    }
 }

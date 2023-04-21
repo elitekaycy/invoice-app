@@ -40,22 +40,35 @@ export const SideBarModal: React.FC<SideBarModalProps> = ({
       onTouchStart={(e) => handleClickOutside(e)}
       className={`sidebar-modal-container ${!isOpen ? 'sidebar-hidden' : ''}`}
     >
-      <div
-        ref={sidebarRef}
-        className={`sidebar-modal ${isOpen ? 'open' : ''} ${
-          theme?.theme === 'light'
-            ? 'sidebar-modal-light'
-            : 'sidebar-modal-dark'
-        }`}
-        style={{ display: isOpen ? 'block' : 'none' }}
-      >
-        <div className="sidebar-container">
-          <div className="modal-navigator">
-            <Navigator handleClick={() => onClose()} />
-          </div>
+      <div className="mini-sidebar">
+        <div
+          ref={sidebarRef}
+          className={`sidebar-modal ${isOpen ? 'open' : ''} ${
+            theme?.theme === 'light'
+              ? 'sidebar-modal-light'
+              : 'sidebar-modal-dark'
+          }`}
+          style={{ display: isOpen ? 'block' : 'none' }}
+        >
+          <div className="sidebar-container">
+            <div className="modal-navigator">
+              <Navigator handleClick={() => onClose()} />
+            </div>
 
-          <SideBarHeader header={'New Invoice'} />
-          <SideBarForm />
+            <SideBarHeader header={'New Invoice'} />
+            <SideBarForm />
+          </div>
+        </div>
+        <div
+          className={`sidebar-footer ${
+            theme?.theme === 'light'
+              ? 'sidebar-footer-light'
+              : 'sidebar-footer-dark'
+          }`}
+        >
+          <button style={{ marginLeft: 400 }} type="submit">
+            submit
+          </button>
         </div>
       </div>
     </div>
