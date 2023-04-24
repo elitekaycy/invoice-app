@@ -88,14 +88,15 @@ export const Item: React.FC<ItemListType> = ({
           {Number(itemQuantity) * itemPrice}
         </span>
       </div>
-      <div 
-      onClick={() => {
-          const newInfo = {...info}
-          newInfo.items = newInfo?.items.filter((item, idx) => idx !== id)
-          setItem(newInfo)
-      }} 
-      className="item-delete">
-      <img src={deleteIcon} alt="delete" />
+      <div
+        onClick={() => {
+          const newInfo = { ...info };
+          newInfo.items = newInfo?.items.filter((item, idx) => idx !== id);
+          setItem(newInfo);
+        }}
+        className="item-delete"
+      >
+        <img src={deleteIcon} alt="delete" />
       </div>
     </div>
   );

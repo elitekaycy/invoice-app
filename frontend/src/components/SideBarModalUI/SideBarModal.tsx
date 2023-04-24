@@ -19,10 +19,17 @@ import { SaveDraftButton } from '../ButtonsUI/SaveDraftButton';
 import { SaveSend } from '../ButtonsUI/SaveSend';
 import { EditButton } from '../ButtonsUI/EditButton';
 
-export const SideBarModal: React.FC<SideBarModalProps> = ({
+interface SideBarModalType extends SideBarModalProps {
+  id?: string;
+  edit?: boolean;
+}
+
+export const SideBarModal: React.FC<SideBarModalType> = ({
   isOpen,
+  edit,
+  id,
   onClose,
-}: SideBarModalProps): JSX.Element => {
+}: SideBarModalType): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
@@ -43,9 +50,7 @@ export const SideBarModal: React.FC<SideBarModalProps> = ({
       onTouchStart={(e) => handleClickOutside(e)}
       className={`sidebar-modal-container ${!isOpen ? 'sidebar-hidden' : ''}`}
     >
-      <div 
-      ref={sidebarRef}
-      className="mini-sidebar">
+      <div ref={sidebarRef} className="mini-sidebar">
         <div
           className={`sidebar-modal ${isOpen ? 'open' : ''} ${
             theme?.theme === 'light'
@@ -59,7 +64,7 @@ export const SideBarModal: React.FC<SideBarModalProps> = ({
               <Navigator handleClick={() => onClose()} />
             </div>
 
-            <SideBarHeader header={'New Invoice'} />
+            <SideBarHeader header={edit ? `Edit #${id}` : 'New Invoice'} />
             <SideBarForm />
           </div>
         </div>
@@ -70,18 +75,37 @@ export const SideBarModal: React.FC<SideBarModalProps> = ({
               : 'sidebar-footer-dark'
           }`}
         >
-         <div className='footer-container'>
-               <div className='discard'>
-                <EditButton title={"Discard"} handleClick={(e: any) => { 
-                  e.preventDefault
-                  console.log('edit btn')}}/>
-               </div>
+          {!edit ? (
+            <div className="footer-container">
+              <div className="discard">
+                <EditButton
+                  title={'Discard'}
+                  handleClick={(e: any) => {
+                    e.preventDefault;
+                    console.log('edit btn');
+                  }}
+                />
+              </div>
 
-               <div className='btn-footer-left'>
-                <SaveDraftButton handleClick={() => console.log("save draft")}/>
+              <div className="btn-footer-left">
+                <SaveDraftButton
+                  handleClick={() => console.log('save draft')}
+                />
                 <SaveSend handleClick={() => console.log('handle click')} />
-               </div>
-         </div>
+              </div>
+            </div>
+          ) : (
+            <div className="footer-container">
+              <div className="discard"></div>
+
+              <div className="btn-footer-left">
+                <SaveDraftButton
+                  handleClick={() => console.log('save draft')}
+                />
+                <SaveSend handleClick={() => console.log('handle click')} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
