@@ -13,6 +13,40 @@
     cursor: pointer;
 }
 
+.btn-add {
+    width: 100%;
+    border-radius: 24px;
+    border: 0;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-add-light:hover {
+    background-color: #DFE3FA;
+}
+
+.btn-add-dark:hover {
+    background-color: var(--invoice-gray)
+}
+
+.btn-plus {
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.add-btn-light {
+    color: var(--invoice-dark-default);
+    background-color: #F9FAFE;
+}
+
+.add-btn-dark {
+    color: #FFFFFF;
+    background-color: var(--invoice-gray-light)
+}
+
 .btn-default {
     width: 131px;
     height: 48px;
@@ -88,7 +122,7 @@
 }
 
 .edit-btn-dark:hover {
-    background-color: #FFFFF;
+    background-color: #FFFFFF;
     color: var(--invoice-light);
 }
 
@@ -142,5 +176,12 @@
 
     .btn-text::before {
         content: 'New'
+    }
+}
+
+@media (max-width: 550px){
+    .btn-md {
+        max-width: 90px;
+        width: 100%;
     }
 }

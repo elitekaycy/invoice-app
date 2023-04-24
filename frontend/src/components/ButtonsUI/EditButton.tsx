@@ -2,9 +2,13 @@ import React, { useContext } from 'react';
 import { BtnProps } from './types';
 import { ThemeContextDefault } from '../../context/ThemeContext';
 
-export const EditButton: React.FC<BtnProps> = ({
-  handleClick,
-}: BtnProps): JSX.Element => {
+interface EditType extends BtnProps {
+  title: string,
+}
+
+export const EditButton: React.FC<EditType> = ({
+  title, handleClick
+}: EditType): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
 
   return (
@@ -14,7 +18,7 @@ export const EditButton: React.FC<BtnProps> = ({
         theme?.theme === 'light' ? 'edit-btn-light' : 'edit-btn-dark'
       }`}
     >
-      <h3 className={`btn-center invoice-h3-small`}>Edit</h3>
+      <h3 className={`btn-center invoice-h3-small`}>{title}</h3>
     </button>
   );
 };

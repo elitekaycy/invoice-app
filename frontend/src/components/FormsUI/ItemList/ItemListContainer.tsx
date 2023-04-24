@@ -5,6 +5,7 @@ import {
   FillFormType,
   FillFormTypeError,
 } from '../../SideBarModalUI/SidebarTypes';
+import { AddNewItem } from '../../ButtonsUI/AddNewItem';
 
 type ItemType = {
   info: FillFormType;
@@ -37,6 +38,19 @@ export const ItemListContainer: React.FC<ItemType> = ({
             setItem={setItemArray}
           />
         ))}
+
+        <AddNewItem 
+        handleClick={() => {
+          const newInfo:FillFormType = {...info}
+          newInfo.items = [...newInfo?.items, {
+            itemName: "",
+            itemPrice: 0,
+            itemQuantity: ""
+          }]
+
+          setItemArray(newInfo)
+        }}
+        />
     </div>
   );
 };
