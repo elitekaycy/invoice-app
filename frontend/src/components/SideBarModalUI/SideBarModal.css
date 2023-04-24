@@ -40,7 +40,7 @@
   
   /* style scrollbar */
 .sidebar-modal::-webkit-scrollbar {
-    width: 5px;
+    width: 10px;
     height: 5px;
   }
   
@@ -75,9 +75,7 @@ border-radius: 5px;
 
 .sidebar-footer-light {
     background-color: white;
-    -webkit-box-shadow: -2px -86px 187px -30px rgba(151,151,151,0.61);
--moz-box-shadow: -2px -86px 187px -30px rgba(151,151,151,0.61);
-box-shadow: -2px -86px 187px -30px rgba(151,151,151,0.61);
+
 }
 
 .sidebar-footer-dark {
