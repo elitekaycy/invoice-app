@@ -25,7 +25,7 @@ export interface BillError {
   country: boolean;
 }
 
-export interface Item {
+export interface ItemType {
   itemName: string;
   itemQuantity: string;
   itemPrice: number;
@@ -39,7 +39,7 @@ export interface FillFormType {
   invoiceDate: string;
   paymentTerms: number | null;
   projectDescription: string;
-  items: Item[] | [];
+  items: ItemType[] | [];
 }
 
 export interface FillFormTypeError {

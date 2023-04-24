@@ -1,3 +1,118 @@
+.datepicker {
+    display: none;
+}
+
+.payment-date {
+    display: flex;
+    max-width: 760px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.flex {
+  flex: 1 1 50%;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input-date-picker {
+    width: 240px;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.input-date-picker:hover{
+    border: 1px solid var(--invoice-purple)
+}
+
+.date-title-dark {
+    color: #FFFFFF
+}
+
+.input-light {
+    border: 1px solid var(--invoice-light)
+}
+
+.input-light:focus {
+    outline: 1px solid var(--invoice-purple-light)
+}
+
+
+.select {
+    width: 240px;
+    height: 48px;
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('../../assets/icon-arrow-down.svg');
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 20px;
+}
+
+
+
+
+.select-label {
+    margin-top : 8px;
+}
+.select-light {
+    background-origin: content-box;
+    border: 1px solid var(--invoice-light);
+}
+
+.select-light:focus {
+    outline: 1px solid var(--invoice-purple)
+}
+
+.select-dark {
+    border: 1px solid var(--invoice-gray-light);
+    background-color: var(--invoice-gray);
+    color: #ffffff;
+    background-origin: content-box;
+}
+
+.select-dark:focus {
+    outline: none
+}
+
+.select-ul {
+    width: 240px;
+    height: 191px;
+    background-color: #ffffff;
+    box-shadow: 0px 10px 20px 0px;
+    border-radius: 8px;
+    z-index: 60px;
+}
+
+.select-open {
+    position: absolute;
+    display: block
+}
+
+.select-close {
+    display: none
+}
+
+
 .form-header {
     color: var(--invoice-purple);
     margin-bottom: 20px;
@@ -111,10 +226,42 @@
     gap: 20px;
 }
 
+
+@media (max-width: 765px){
+    .input-date-picker {
+        flex: 1;
+        max-width: 220px;
+        width: 100%
+    }
+
+    .select {
+        flex: 1;
+        max-width: 220px;
+        width: 100%;
+    }
+}
+
+
 @media (max-width: 470px){
     .form-constraint-container {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .payment-date {
+        flex-direction: column;
+    }
+
+    .input-date-picker {
+        flex: 1;
+        max-width: 470px;
+        width: 100%
+    }
+
+    .select {
+        flex: 1;
+        max-width: 470px;
+        width: 100%
     }
 
     .inner-constraint {
@@ -134,3 +281,4 @@
         width: 100%;
     }
 }
+

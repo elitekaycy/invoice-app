@@ -15,6 +15,9 @@ import { FormHeader } from '../FormsUI/FormHeader';
 import { SideBarHeader } from './SideBarHeader';
 import { SideBarModalProps, FillFormType } from './SidebarTypes';
 import { SideBarForm } from './SideBarForm';
+import { SaveDraftButton } from '../ButtonsUI/SaveDraftButton';
+import { SaveSend } from '../ButtonsUI/SaveSend';
+import { EditButton } from '../ButtonsUI/EditButton';
 
 export const SideBarModal: React.FC<SideBarModalProps> = ({
   isOpen,
@@ -40,9 +43,10 @@ export const SideBarModal: React.FC<SideBarModalProps> = ({
       onTouchStart={(e) => handleClickOutside(e)}
       className={`sidebar-modal-container ${!isOpen ? 'sidebar-hidden' : ''}`}
     >
-      <div className="mini-sidebar">
+      <div 
+      ref={sidebarRef}
+      className="mini-sidebar">
         <div
-          ref={sidebarRef}
           className={`sidebar-modal ${isOpen ? 'open' : ''} ${
             theme?.theme === 'light'
               ? 'sidebar-modal-light'
@@ -66,9 +70,18 @@ export const SideBarModal: React.FC<SideBarModalProps> = ({
               : 'sidebar-footer-dark'
           }`}
         >
-          <button style={{ marginLeft: 400 }} type="submit">
-            submit
-          </button>
+         <div className='footer-container'>
+               <div className='discard'>
+                <EditButton title={"Discard"} handleClick={(e: any) => { 
+                  e.preventDefault
+                  console.log('edit btn')}}/>
+               </div>
+
+               <div className='btn-footer-left'>
+                <SaveDraftButton handleClick={() => console.log("save draft")}/>
+                <SaveSend handleClick={() => console.log('handle click')} />
+               </div>
+         </div>
         </div>
       </div>
     </div>

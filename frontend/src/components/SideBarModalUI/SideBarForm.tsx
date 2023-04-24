@@ -8,6 +8,9 @@ import {
   FillFormType,
   FillFormTypeError,
 } from './SidebarTypes';
+import { Dropdown } from '../FormsUI/Dropdown';
+import Datepicker from '../FormsUI/DatePicker';
+import { ItemListContainer } from '../FormsUI/ItemList/ItemListContainer';
 
 export const SideBarForm: React.FC = (): JSX.Element => {
   const [info, setInfo] = useState<FillFormType>({
@@ -23,7 +26,13 @@ export const SideBarForm: React.FC = (): JSX.Element => {
       postCode: '',
       country: '',
     },
-    items: [],
+    items: [
+      {
+        itemName: '',
+        itemPrice: 0,
+        itemQuantity: '',
+      },
+    ],
     clientName: '',
     clientEmail: '',
     invoiceDate: '',
@@ -50,21 +59,6 @@ export const SideBarForm: React.FC = (): JSX.Element => {
     projectDescription: false,
   });
   const theme = useContext(ThemeContextDefault);
-
-  const TextFormConstraints: React.FC<ConstraintType> = ({
-    children,
-    wrap,
-  }: ConstraintType): JSX.Element => {
-    return (
-      <div
-        className={`${
-          wrap ? 'text-form-constraint-wrap' : 'text-form-constraint'
-        }`}
-      >
-        {children}
-      </div>
-    );
-  };
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -206,16 +200,10 @@ export const SideBarForm: React.FC = (): JSX.Element => {
               wrap={true}
               responsive={false}
               label="Post Code"
-              value={info['senderAddress']['postCode']}
-              error={error['senderAddress']['postCode']}
-              handleChange={(e: any) =>
-                setInfo({
-                  ...info,
-                  senderAddress: {
-                    ...info.senderAddress,
-                    postCode: e.target.value,
-                  },
-                })
+              value={info?.clientAddress['postCode']}
+              error={error?.clientAddress['postCode']}
+              handleChange={(e) =>
+                handleInputChange(e, 'clientAddress', 'postCode')
               }
             />
           </div>
@@ -225,20 +213,39 @@ export const SideBarForm: React.FC = (): JSX.Element => {
               wrap={true}
               responsive={true}
               label="Country"
-              value={info['senderAddress']['country']}
-              error={error['senderAddress']['country']}
+              value={info?.clientAddress?.country}
+              error={error?.clientAddress?.country}
               handleChange={(e: any) =>
-                setInfo({
-                  ...info,
-                  senderAddress: {
-                    ...info.senderAddress,
-                    country: e.target.value,
-                  },
-                })
+                handleInputChange(e, 'clientAddress', 'country')
               }
             />
           </div>
         </div>
+
+        <div className="payment-date">
+          <Dropdown
+            label="Payment Terms"
+            onChange={(value) => setInfo({ ...info, paymentTerms: value })}
+          />
+
+          <Datepicker
+            label="Issue Date"
+            onChange={(value) => setInfo({ ...info, invoiceDate: value })}
+          />
+        </div>
+
+        <TextFieldDefault
+          wrap={false}
+          responsive={true}
+          label="Project Description"
+          value={info?.projectDescription}
+          error={error?.projectDescription}
+          handleChange={(e: any) =>
+            setInfo({ ...info, projectDescription: e?.target?.value })
+          }
+        />
+
+        <ItemListContainer info={info} error={error} setItemArray={setInfo} />
 
         {/* Button footer */}
       </form>
