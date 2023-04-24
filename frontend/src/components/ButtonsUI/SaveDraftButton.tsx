@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { BtnProps } from './types';
 import { ThemeContextDefault } from '../../context/ThemeContext';
 
-
 export const SaveDraftButton: React.FC<BtnProps> = ({
   handleClick,
 }: BtnProps): JSX.Element => {

@@ -3,11 +3,12 @@ import { BtnProps } from './types';
 import { ThemeContextDefault } from '../../context/ThemeContext';
 
 interface EditType extends BtnProps {
-  title: string,
+  title: string;
 }
 
 export const EditButton: React.FC<EditType> = ({
-  title, handleClick
+  title,
+  handleClick,
 }: EditType): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
 

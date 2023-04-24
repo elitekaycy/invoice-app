@@ -39,18 +39,21 @@ export const ItemListContainer: React.FC<ItemType> = ({
           />
         ))}
 
-        <AddNewItem 
+      <AddNewItem
         handleClick={() => {
-          const newInfo:FillFormType = {...info}
-          newInfo.items = [...newInfo?.items, {
-            itemName: "",
-            itemPrice: 0,
-            itemQuantity: ""
-          }]
+          const newInfo: FillFormType = { ...info };
+          newInfo.items = [
+            ...newInfo?.items,
+            {
+              itemName: '',
+              itemPrice: 0,
+              itemQuantity: '',
+            },
+          ];
 
-          setItemArray(newInfo)
+          setItemArray(newInfo);
         }}
-        />
+      />
     </div>
   );
 };

@@ -17,7 +17,7 @@ export const SideBarHeader: React.FC<SideBarHeaderProps> = ({
           theme?.theme === 'light' ? 'sidebar-text-light' : 'sidebar-text-dark'
         }`}
       >
-        New Invoice
+        {header}
       </h3>
     </div>
   );

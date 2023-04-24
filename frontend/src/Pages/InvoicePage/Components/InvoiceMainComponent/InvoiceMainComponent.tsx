@@ -4,7 +4,6 @@ import React, { useContext } from 'react';
 import next from '../../../../assets/icon-arrow-right.svg';
 import {
   myProps,
-  IStatus,
   IDType,
   TotalType,
   ClientNameType,
@@ -12,6 +11,7 @@ import {
   InvoiceNextType,
 } from './InvoiceMainTypes';
 import { useNavigate } from 'react-router-dom';
+import { StatusComp } from './InvoiceSubComponent/StatusComp';
 
 export const InvoiceMainComponent: React.FC<myProps> = (
   props: myProps
@@ -20,35 +20,6 @@ export const InvoiceMainComponent: React.FC<myProps> = (
   const { id, status, clientName, total, paymentDue } = props;
 
   const navigate = useNavigate();
-
-  const StatusComp: React.FC<IStatus> = ({ state }: IStatus): JSX.Element => {
-    return (
-      <div
-        className={`invoice-h3-small invoice-status ${
-          state === 'paid'
-            ? 'invoice-paid'
-            : state === 'pending'
-            ? 'invoice-pending'
-            : theme?.theme === 'light'
-            ? 'invoice-draft-light'
-            : 'invoice-draft'
-        }`}
-      >
-        <span
-          className={`invoice-dot ${
-            state === 'paid'
-              ? 'invoice-dot-paid'
-              : state === 'pending'
-              ? 'invoice-dot-pending'
-              : theme?.theme === 'light'
-              ? 'invoice-dot-draft-light'
-              : 'invoice-dot-draft'
-          }`}
-        ></span>
-        {String(state).charAt(0).toUpperCase() + String(state).slice(1)}
-      </div>
-    );
-  };
 
   const IdComp: React.FC<IDType> = ({ id }: IDType): JSX.Element => {
     return (
