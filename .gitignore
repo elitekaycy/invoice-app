@@ -2,3 +2,4 @@ preview.jpg
 
 # ignore frontend node modules
 frontend/node_modules
+backend/node_modules
