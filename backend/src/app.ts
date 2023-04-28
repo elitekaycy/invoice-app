@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 import invoiceRouter from './routes/index';
-
+import './db/dbConnnect.'
 // connect to postgress database
 // create a database scheme
 // solidify the create invoice route and the get invoice routes 
