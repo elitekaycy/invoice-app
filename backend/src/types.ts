@@ -17,8 +17,9 @@ export interface InvoiceGetFromClientType {
     senderAddress: Bill;
     clientAddress: Bill;
     clientName: string;
+    status: string;
     clientEmail: string;
-    invoiceDate: string;
+    paymentDue: string;
     paymentTerms: number;
     projectDescription: string;
     items: ItemType[];
