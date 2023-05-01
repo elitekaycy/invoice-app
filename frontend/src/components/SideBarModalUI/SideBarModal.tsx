@@ -18,14 +18,17 @@ import { SideBarForm } from './SideBarForm';
 import { SaveDraftButton } from '../ButtonsUI/SaveDraftButton';
 import { SaveSend } from '../ButtonsUI/SaveSend';
 import { EditButton } from '../ButtonsUI/EditButton';
+import { InvoiceReturnDataType } from '../../Pages/InvoicePage/InvoiceTypes';
 
 interface SideBarModalType extends SideBarModalProps {
   id?: string;
   edit?: boolean;
+  data: InvoiceReturnDataType | null
 }
 
 export const SideBarModal: React.FC<SideBarModalType> = ({
   isOpen,
+  data,
   edit,
   id,
   onClose,
@@ -52,11 +55,10 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
     >
       <div ref={sidebarRef} className="mini-sidebar">
         <div
-          className={`sidebar-modal ${isOpen ? 'open' : ''} ${
-            theme?.theme === 'light'
-              ? 'sidebar-modal-light'
-              : 'sidebar-modal-dark'
-          }`}
+          className={`sidebar-modal ${isOpen ? 'open' : ''} ${theme?.theme === 'light'
+            ? 'sidebar-modal-light'
+            : 'sidebar-modal-dark'
+            }`}
           style={{ display: isOpen ? 'block' : 'none' }}
         >
           <div className="sidebar-container">
@@ -65,15 +67,16 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
             </div>
 
             <SideBarHeader header={edit ? `Edit #${id}` : 'New Invoice'} />
-            <SideBarForm />
+            <SideBarForm
+              data={data}
+            />
           </div>
         </div>
         <div
-          className={`sidebar-footer ${
-            theme?.theme === 'light'
-              ? 'sidebar-footer-light'
-              : 'sidebar-footer-dark'
-          }`}
+          className={`sidebar-footer ${theme?.theme === 'light'
+            ? 'sidebar-footer-light'
+            : 'sidebar-footer-dark'
+            }`}
         >
           {!edit ? (
             <div className="footer-container">

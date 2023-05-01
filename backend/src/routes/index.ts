@@ -1,14 +1,12 @@
 import express, { Request, Response } from "express";
 import { getLogger } from "@/utils/loggers";
-import { InvoiceGetFromClientType } from "@/types";
+import { InvoiceGetFromClientType, InvoiceSendToClientType } from "@/types";
 import { client } from "../db/dbConnnect.";
+import { InvoiceDelete } from "./InvoiceDelete";
+import { invoiceGet, invoiceGetAll } from "./InvoiceGet";
+import { InvoiceCreate, MarkAsPaid } from "./InvoiceCreate";
+import { InvoiceEdit } from "./InvoiceEdit";
 const router = express.Router();
-const logger = getLogger("INDEX_ROUTE");
-
-/* GET home page. */
-router.get("/", function (_req, res, _next) {
-  res.json({ data: "invoice router " });
-});
 
 // create invoice router
 /* 
@@ -18,87 +16,16 @@ router.get("/", function (_req, res, _next) {
   4. sends back 201 message with created to be true
 */
 
-router.post("/create", function (_req: Request, res: Response, _next) {
-  try {
-    const newInvoice: InvoiceGetFromClientType = _req?.body;
+router.post("/create", InvoiceCreate);
 
-    client.query(
-      `INSERT INTO invoice 
-        (clientName, clientEmail, status, paymentDue, paymentTerms, description, total) 
-        VALUES($1, $2, $3, $4, $5 ,$6, $7) RETURNING id`,
-      [
-        newInvoice?.clientName,
-        newInvoice?.clientEmail,
-        newInvoice?.status,
-        newInvoice?.paymentDue,
-        newInvoice?.paymentTerms,
-        newInvoice?.projectDescription,
-        newInvoice?.total,
-      ],
-      (err, results) => {
-        if (err) {
-          throw new Error(`${err?.name}: ${err?.message}`);
-        }
+router.put("/edit/:id", InvoiceEdit);
 
-        const invoiceId = results?.rows[0]?.id;
+router.put("/mark/:id", MarkAsPaid);
 
-        // insert both address - if error delete reference
-        // insert items - if error delete reference
-        const invoiceValues = [
-          [
-            newInvoice?.clientAddress?.country,
-            newInvoice?.clientAddress?.city,
-            newInvoice?.clientAddress?.postCode,
-            newInvoice?.clientAddress?.streetAddress,
-            true,
-            invoiceId,
-          ],
-          [
-            newInvoice?.senderAddress?.country,
-            newInvoice?.senderAddress?.city,
-            newInvoice?.senderAddress?.postCode,
-            newInvoice?.senderAddress?.streetAddress,
-            false,
-            invoiceId,
-          ],
-        ];
+router.get("/invoice/:id", invoiceGet);
 
-        for (let i = 0; i < invoiceValues?.length; i++) {
-          client.query(
-            `INSERT INTO address (country, city, postcode, street, client, invoice_id) VALUES ($1, $2, $3, $4, $5, $6)`,
-            invoiceValues[i],
-            (err, result) => {
-              if (err) {
-                // delete invoice here...
-                throw new Error(`${err?.name}: ${err?.message}`);
-              }
-            }
-          );
-        }
+router.get("/invoices", invoiceGetAll);
 
-        newInvoice?.items?.forEach((item) => {
-          client.query(
-            `INSERT INTO items (name, quantity, price, invoice_id) VALUES ($1, $2, $3, $4)`,
-            [item?.itemName, item?.itemQuantity, item?.itemPrice, invoiceId],
-            (err, result) => {
-              if (err) {
-                // delete invoice here
-                throw new Error(`${err?.name}: ${err?.message}`);
-              }
-            }
-          );
-        });
-
-        return res.status(201).send("created successfully");
-      }
-    );
-  } catch (err) {
-    res.status(400).send(`error occured ${err}`);
-  }
-});
-
-// GET TABLE DATA
-// use data id to get all the data that is relating to the invoice data -
-// make sure it corresponds with the invoice_data types
+router.delete("/invoice/delete/:id", InvoiceDelete);
 
 export default router;

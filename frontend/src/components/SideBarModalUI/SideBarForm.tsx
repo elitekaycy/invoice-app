@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import './SideBarModal.css';
 import { FormHeader } from '../FormsUI/FormHeader';
 import { TextFieldDefault } from '../FormsUI/TextFieldDefault';
@@ -11,53 +11,18 @@ import {
 import { Dropdown } from '../FormsUI/Dropdown';
 import Datepicker from '../FormsUI/DatePicker';
 import { ItemListContainer } from '../FormsUI/ItemList/ItemListContainer';
+import { InvoiceReturnDataType } from '../../Pages/InvoicePage/InvoiceTypes';
+import { AddressConstant, ErrorConstant, InitialEditInfo } from './Sidebarhelper';
 
-export const SideBarForm: React.FC = (): JSX.Element => {
-  const [info, setInfo] = useState<FillFormType>({
-    senderAddress: {
-      streetAddress: '',
-      city: '',
-      postCode: '',
-      country: '',
-    },
-    clientAddress: {
-      streetAddress: '',
-      city: '',
-      postCode: '',
-      country: '',
-    },
-    items: [
-      {
-        itemName: '',
-        itemPrice: 0,
-        itemQuantity: '',
-      },
-    ],
-    clientName: '',
-    clientEmail: '',
-    invoiceDate: '',
-    paymentTerms: null,
-    projectDescription: '',
-  });
-  const [error, setError] = useState<FillFormTypeError>({
-    senderAddress: {
-      streetAddress: false,
-      city: false,
-      postCode: false,
-      country: false,
-    },
-    clientAddress: {
-      streetAddress: false,
-      city: false,
-      postCode: false,
-      country: false,
-    },
-    clientName: false,
-    clientEmail: false,
-    invoiceDate: false,
-    paymentTerms: false,
-    projectDescription: false,
-  });
+
+type SideBarFormType = {
+  data: InvoiceReturnDataType | null
+}
+
+export const SideBarForm: React.FC<SideBarFormType> = ({ data }: SideBarFormType): JSX.Element => {
+
+  const [info, setInfo] = useState<FillFormType>({ ...AddressConstant });
+  const [error, setError] = useState<FillFormTypeError>(ErrorConstant);
   const theme = useContext(ThemeContextDefault);
 
   const handleInputChange = (
@@ -71,6 +36,15 @@ export const SideBarForm: React.FC = (): JSX.Element => {
     setInfo(newInfo);
   };
 
+
+  useEffect(() => {
+    if (data !== null) {
+      const editInfo = InitialEditInfo(data)
+      console.log("use-effect loading data ... ")
+      setInfo(editInfo)
+    }
+  }, [data])
+
   return (
     <div className="scrollable-form">
       <form>
@@ -81,16 +55,6 @@ export const SideBarForm: React.FC = (): JSX.Element => {
           responsive={true}
           value={info['senderAddress']['streetAddress']}
           error={error['senderAddress']['streetAddress']}
-          //   handleChange={(e: any) => {
-          //     console.log(info);
-          //     setInfo({
-          //       ...info,
-          //       senderAddress: {
-          //         ...info.senderAddress,
-          //         streetAddress: e.target.value,
-          //       },
-          //     });
-          //   }}
           handleChange={(e) =>
             handleInputChange(e, 'senderAddress', 'streetAddress')
           }

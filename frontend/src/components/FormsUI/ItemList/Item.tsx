@@ -42,18 +42,16 @@ export const Item: React.FC<ItemListType> = ({
             newInfo.items[itemsIndex]['itemName'] = e.target.value;
             setItem(newInfo);
           }}
-          className={`item-name-input ${
-            theme?.theme === 'light' ? 'item-light' : 'item-dark'
-          }`}
+          className={`item-name-input ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
+            }`}
         />
       </div>
       <div>
         <input
           required
           type="string"
-          className={`item-qty ${
-            theme?.theme === 'light' ? 'item-light' : 'item-dark'
-          }`}
+          className={`item-qty ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
+            }`}
           value={itemQuantity}
           onChange={(e) => {
             const newInfo = { ...info };
@@ -67,10 +65,9 @@ export const Item: React.FC<ItemListType> = ({
         <input
           required
           type="number"
-          className={`item-price ${
-            theme?.theme === 'light' ? 'item-light' : 'item-dark'
-          }`}
-          value={itemPrice}
+          className={`item-price ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
+            }`}
+          value={Number(itemPrice)}
           onChange={(e) => {
             const newInfo = { ...info };
             let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
@@ -81,9 +78,8 @@ export const Item: React.FC<ItemListType> = ({
       </div>
       <div>
         <span
-          className={`invoice-h3-small ${
-            theme?.theme === 'light' ? 'text-light' : 'text-dark'
-          }`}
+          className={`invoice-h3-small ${theme?.theme === 'light' ? 'text-light' : 'text-dark'
+            }`}
         >
           {Number(itemQuantity) * itemPrice}
         </span>
