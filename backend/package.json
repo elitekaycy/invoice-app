@@ -6,7 +6,7 @@
     "start": "SET NODE_OPTIONS='--trace-deprecation --abort-on-uncaught-exception' && SET NODE_ENV=development && nodemon --exec ts-node ./bin/www.ts",
     "build": "sh etc/build.sh",
     "prod": "npm run install",
-    "prod-start": "SET NODE_OPTIONS='--trace-deprecation --abort-on-uncaught-exception' && SET NODE_ENV=production && ts-node ./bin/www.ts"
+    "prod-start": "export NODE_OPTIONS='--trace-deprecation --abort-on-uncaught-exception' && export NODE_ENV=production && ts-node ./bin/www.ts"
   },
   "dependencies": {
     "@types/pg": "^8.6.6",
