@@ -4,13 +4,16 @@ import { ThemeContextDefault } from '../../../../context/ThemeContext';
 import { StatusComp } from '../InvoiceMainComponent/InvoiceSubComponent/StatusComp';
 import { EditButton, MarkButton } from '../../../../components';
 import { DeleteButton } from '../../../../components/ButtonsUI/DeleteButton';
+import { InvoiceReturnDataType } from '../../InvoiceTypes';
 
 type EditInvoiceMainCompType = {
   handleOpen: () => void;
+  status: string | null,
   id: string;
 };
 
 export const EditInvoiceMainComponent: React.FC<EditInvoiceMainCompType> = ({
+  status,
   handleOpen,
   id,
 }: EditInvoiceMainCompType): JSX.Element => {
@@ -18,21 +21,19 @@ export const EditInvoiceMainComponent: React.FC<EditInvoiceMainCompType> = ({
   return (
     <>
       <div
-        className={`edit-invoice-page-comp ${
-          theme?.theme === 'light' ? 'edit-invoice-light' : 'edit-invoice-dark'
-        }`}
+        className={`edit-invoice-page-comp ${theme?.theme === 'light' ? 'edit-invoice-light' : 'edit-invoice-dark'
+          }`}
       >
         <div className="edit-invoice-comp-1">
           <span
-            className={`invoice-body-1 ${
-              theme?.theme === 'light'
-                ? 'edit-invoice-comp-light'
-                : 'invoice-return-dark'
-            }`}
+            className={`invoice-body-1 ${theme?.theme === 'light'
+              ? 'edit-invoice-comp-light'
+              : 'invoice-return-dark'
+              }`}
           >
             Status
           </span>
-          <StatusComp state="pending" />
+          <StatusComp state={status !== null ? status : "pending"} />
         </div>
 
         <div className="edit-btn-flex">
@@ -42,9 +43,8 @@ export const EditInvoiceMainComponent: React.FC<EditInvoiceMainCompType> = ({
         </div>
       </div>
       <div
-        className={`fixed-btn-options ${
-          theme?.theme === 'light' ? 'edit-invoice-light' : 'edit-invoice-dark'
-        }`}
+        className={`fixed-btn-options ${theme?.theme === 'light' ? 'edit-invoice-light' : 'edit-invoice-dark'
+          }`}
       >
         <EditButton title="Edit" handleClick={() => handleOpen()} />
         <DeleteButton handleClick={() => console.log('delete button')} />

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './InvoicePage.css';
 import {
   EditButton,
@@ -12,20 +12,17 @@ import emptyInvoice from '../../assets/illustration-empty.svg';
 import { InvoiceDataType } from './InvoiceTypes';
 import { InvoiceMainComponent } from './Components/InvoiceMainComponent/InvoiceMainComponent';
 import { SideBarModal } from '../../components/SideBarModalUI/SideBarModal';
+import { getInvoices } from '../../helpers/Api';
 
 export const InvoicePage: React.FC = (): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
   const [isInvoiceOpen, setIsInvoiceOpen] = useState<boolean>(false);
 
-  const [invoices, setInvoices] = useState<InvoiceDataType[] | []>(
-    data.map((file) => ({
-      id: file?.id,
-      paymentDue: file?.paymentDue,
-      clientName: file?.clientName,
-      total: file?.total,
-      status: file?.status,
-    }))
-  );
+  const [invoices, setInvoices] = useState<InvoiceDataType[] | []>([]);
+
+  useEffect(() => {
+    getInvoices().then(data => setInvoices(data?.data)).catch(err => console.log("error is ", err))
+  }, [])
 
   return (
     <React.Fragment>
@@ -33,14 +30,13 @@ export const InvoicePage: React.FC = (): JSX.Element => {
         <div className="invoice-main">
           <div className="invoice-header">
             <div
-              className={`${
-                theme?.theme === 'light'
-                  ? 'invoice-main-text'
-                  : 'invoice-main-text-dark'
-              }`}
+              className={`${theme?.theme === 'light'
+                ? 'invoice-main-text'
+                : 'invoice-main-text-dark'
+                }`}
             >
               <h2 className="invoice-title">Invoices</h2>
-              <p className="invoice-subtitle"> 7 </p>
+              <p className="invoice-subtitle"> {invoices.length} </p>
             </div>
 
             <div className="invoice-left">
@@ -55,14 +51,14 @@ export const InvoicePage: React.FC = (): JSX.Element => {
           </div>
 
           <div className="invoice-sub-main">
-            {invoices &&
+            {invoices?.length > 0 &&
               invoices.map((invoice) => {
                 return (
                   <InvoiceMainComponent
                     key={invoice?.id}
                     id={invoice?.id}
-                    paymentDue={invoice?.paymentDue}
-                    clientName={invoice?.clientName}
+                    paymentDue={invoice?.paymentdue}
+                    clientName={invoice?.clientname}
                     total={invoice?.total}
                     status={invoice?.status}
                   />
@@ -79,6 +75,7 @@ export const InvoicePage: React.FC = (): JSX.Element => {
         </div>
       </div>
       <SideBarModal
+        data={null}
         isOpen={isInvoiceOpen}
         onClose={() => {
           document.body.classList.remove('no-scroll');

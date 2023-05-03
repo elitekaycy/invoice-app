@@ -1,18 +1,16 @@
-
-import express, { RequestHandler, } from 'express';
-import path from 'path';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-
-import invoiceRouter from './routes/index';
-import './db/dbConnnect.'
+import express, { RequestHandler } from "express";
+import path from "path";
+import cookieParser from "cookie-parser";
+import logger from "morgan";
+import cors from "cors";
+import invoiceRouter from "./routes/index";
+import "./db/dbConnnect.";
 // connect to postgress database
 // create a database scheme
-// solidify the create invoice route and the get invoice routes 
+// solidify the create invoice route and the get invoice routes
 
-// connect those routes to the frontend 
-// set up C1/CD for backend 
-
+// connect those routes to the frontend
+// set up C1/CD for backend
 
 class App {
   public app: express.Application;
@@ -24,18 +22,16 @@ class App {
   }
 
   private config() {
-
-    this.app.use(logger('dev'));
+    this.app.use(logger("dev"));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(cookieParser());
+    this.app.use(cors());
   }
 
   private routerSetup() {
-    this.app.use('/', invoiceRouter);
+    this.app.use("/", invoiceRouter);
   }
-
 }
 
 export default new App().app;
-
