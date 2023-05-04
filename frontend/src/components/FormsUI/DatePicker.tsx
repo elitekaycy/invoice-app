@@ -5,21 +5,21 @@ import { ThemeContextDefault } from '../../context/ThemeContext';
 
 type DatePickerProps = {
   label: string;
+  value: Date,
   onChange: (e: any) => void;
 };
 
 const Datepicker: React.FC<DatePickerProps> = ({
   label,
+  value,
   onChange,
 }: DatePickerProps): JSX.Element => {
-  const [selectedDate, setSelectedDate] = useState<string>(
-    new Date().toDateString()
-  );
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const inputRef = useRef<HTMLInputElement>(null);
   const theme = useContext(ThemeContextDefault);
 
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedDate(event.target.value);
+    setSelectedDate(new Date(event.target.value));
   };
 
   function handleDivClick() {
@@ -34,12 +34,11 @@ const Datepicker: React.FC<DatePickerProps> = ({
       <br />
       <input
         ref={inputRef}
-        className={`input-date-picker ${
-          theme?.theme === 'light' ? 'input-light' : 'text-field-dark'
-        }`}
+        className={`input-date-picker ${theme?.theme === 'light' ? 'input-light' : 'text-field-dark'
+          }`}
         type="date"
-        value={selectedDate}
-        onChange={handleDateChange}
+        value={value.toISOString().substr(0, 10)}
+        onChange={(e) => onChange(e)}
         min="2021-01-01"
         max="2023-12-31"
       />

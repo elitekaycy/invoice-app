@@ -15,9 +15,8 @@ export const EditButton: React.FC<EditType> = ({
   return (
     <button
       onClick={handleClick}
-      className={`btn-small ${
-        theme?.theme === 'light' ? 'edit-btn-light' : 'edit-btn-dark'
-      }`}
+      className={`btn-small ${theme?.theme === 'light' ? 'edit-btn-light' : 'edit-btn-dark'
+        }`}
     >
       <h3 className={`btn-center invoice-h3-small`}>{title}</h3>
     </button>

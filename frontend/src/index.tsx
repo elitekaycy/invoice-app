@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeContext } from './context/ThemeContext';
 import '@fontsource/spartan';
+import { ErrorContext } from './context/ErrorContext';
+import { InfoContext } from './context/InfoContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,7 +14,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeContext>
-      <App />
+      <ErrorContext>
+        <InfoContext>
+          <App />
+        </InfoContext>
+      </ErrorContext>
     </ThemeContext>
   </React.StrictMode>
 );

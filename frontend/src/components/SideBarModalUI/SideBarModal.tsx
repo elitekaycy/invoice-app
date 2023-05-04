@@ -10,8 +10,6 @@ import React, {
 import './SideBarModal.css';
 import { ThemeContextDefault } from '../../context/ThemeContext';
 import { Navigator } from '../../Pages/InvoicePage/Components/EditInvoiceMainComponent/Navigator';
-import { TextFieldDefault } from '../FormsUI/TextFieldDefault';
-import { FormHeader } from '../FormsUI/FormHeader';
 import { SideBarHeader } from './SideBarHeader';
 import { SideBarModalProps, FillFormType } from './SidebarTypes';
 import { SideBarForm } from './SideBarForm';
@@ -19,6 +17,10 @@ import { SaveDraftButton } from '../ButtonsUI/SaveDraftButton';
 import { SaveSend } from '../ButtonsUI/SaveSend';
 import { EditButton } from '../ButtonsUI/EditButton';
 import { InvoiceReturnDataType } from '../../Pages/InvoicePage/InvoiceTypes';
+import { InfoContextDefault } from '../../context/InfoContext';
+import { ErrorContextDefault } from '../../context/ErrorContext';
+import { AddressConstant, ErrorConstant } from './Sidebarhelper';
+
 
 interface SideBarModalType extends SideBarModalProps {
   id?: string;
@@ -36,6 +38,9 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
   const theme = useContext(ThemeContextDefault);
   const sidebarRef = useRef<HTMLDivElement>(null);
 
+  const [info, setInfo] = useContext(InfoContextDefault)
+  const [error, setError] = useContext(ErrorContextDefault)
+
   function handleClickOutside(
     event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
   ) {
@@ -46,6 +51,23 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
       onClose();
     }
   }
+
+
+  //create error 
+  // code to create an error type
+  const createError = (err: boolean[], key: string, additionalKey?: string | null) => {
+    if (!additionalKey || additionalKey == null) {
+      setError({ ...error, [key]: true })
+    }
+    else {
+      const newError: any = { ...error }
+      newError[key][additionalKey] = true
+    }
+
+    err.push(true)
+  }
+
+
 
   return (
     <div
@@ -83,16 +105,31 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
               <div className="discard">
                 <EditButton
                   title={'Discard'}
-                  handleClick={(e: any) => {
-                    e.preventDefault;
-                    console.log('edit btn');
+                  handleClick={() => {
+
+                    // code to discard input
+                    const defaultInput = { ...AddressConstant }
+                    defaultInput.clientAddress.streetAddress = ''
+                    defaultInput.clientAddress.city = ''
+                    defaultInput.clientAddress.postCode = ''
+                    defaultInput.clientAddress.country = ''
+                    defaultInput.senderAddress.city = ''
+                    defaultInput.senderAddress.streetAddress = ''
+                    defaultInput.items = []
+
+
+                    setInfo(defaultInput)
+                    setError({ ...ErrorConstant })
+                    console.log('edit button clicked', info)
                   }}
                 />
               </div>
 
               <div className="btn-footer-left">
                 <SaveDraftButton
-                  handleClick={() => console.log('save draft')}
+                  handleClick={() => {
+
+                  }}
                 />
                 <SaveSend handleClick={() => console.log('handle click')} />
               </div>
