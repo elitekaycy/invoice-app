@@ -50,7 +50,6 @@ export const AddressConstant = {
 
 
 export const InitialEditInfo = (data: InvoiceReturnDataType | null) => {
-    console.log("loading... ", data)
     if (data !== null) {
         return {
             senderAddress: {
@@ -74,7 +73,7 @@ export const InitialEditInfo = (data: InvoiceReturnDataType | null) => {
             }),
             clientName: data?.clientname,
             clientEmail: data?.clientemail,
-            invoiceDate: data?.paymentdue,
+            invoiceDate: String(data?.paymentdue),
             paymentTerms: Number(data?.paymentterms),
             projectDescription: data?.description,
         }

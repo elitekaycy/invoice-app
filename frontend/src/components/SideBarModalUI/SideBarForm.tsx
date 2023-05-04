@@ -13,6 +13,8 @@ import Datepicker from '../FormsUI/DatePicker';
 import { ItemListContainer } from '../FormsUI/ItemList/ItemListContainer';
 import { InvoiceReturnDataType } from '../../Pages/InvoicePage/InvoiceTypes';
 import { AddressConstant, ErrorConstant, InitialEditInfo } from './Sidebarhelper';
+import { InfoContextDefault } from '../../context/InfoContext';
+import { ErrorContextDefault } from '../../context/ErrorContext';
 
 
 type SideBarFormType = {
@@ -21,8 +23,8 @@ type SideBarFormType = {
 
 export const SideBarForm: React.FC<SideBarFormType> = ({ data }: SideBarFormType): JSX.Element => {
 
-  const [info, setInfo] = useState<FillFormType>({ ...AddressConstant });
-  const [error, setError] = useState<FillFormTypeError>(ErrorConstant);
+  const [info, setInfo] = useContext(InfoContextDefault);
+  const [error, setError] = useContext(ErrorContextDefault);
   const theme = useContext(ThemeContextDefault);
 
   const handleInputChange = (
@@ -37,10 +39,11 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data }: SideBarFormType
   };
 
 
+
+
   useEffect(() => {
     if (data !== null) {
       const editInfo = InitialEditInfo(data)
-      console.log("use-effect loading data ... ")
       setInfo(editInfo)
     }
   }, [data])
@@ -194,7 +197,8 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data }: SideBarFormType
 
           <Datepicker
             label="Issue Date"
-            onChange={(value) => setInfo({ ...info, invoiceDate: value })}
+            value={info?.invoiceDate !== "" ? new Date(info?.invoiceDate) : new Date()}
+            onChange={(e) => setInfo({ ...info, invoiceDate: e?.target?.value })}
           />
         </div>
 

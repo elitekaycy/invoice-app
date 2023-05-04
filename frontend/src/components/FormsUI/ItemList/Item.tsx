@@ -7,6 +7,7 @@ import {
   FillFormTypeError,
   ItemType,
 } from '../../SideBarModalUI/SidebarTypes';
+import { off } from 'process';
 
 type ItemListType = {
   key: number;
@@ -27,6 +28,13 @@ export const Item: React.FC<ItemListType> = ({
   const [item, setNewItem] = useState(value);
 
   const { itemName, itemPrice, itemQuantity } = value;
+
+  const parseMoney = (money: number): number => {
+    console.log("type of money is ", typeof money, money)
+    console.log(itemPrice, itemQuantity)
+
+    return money
+  }
 
   return (
     <div className="item">
@@ -67,7 +75,7 @@ export const Item: React.FC<ItemListType> = ({
           type="number"
           className={`item-price ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
             }`}
-          value={Number(itemPrice)}
+          value={itemPrice}
           onChange={(e) => {
             const newInfo = { ...info };
             let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
@@ -81,7 +89,7 @@ export const Item: React.FC<ItemListType> = ({
           className={`invoice-h3-small ${theme?.theme === 'light' ? 'text-light' : 'text-dark'
             }`}
         >
-          {Number(itemQuantity) * itemPrice}
+          {itemQuantity}
         </span>
       </div>
       <div
