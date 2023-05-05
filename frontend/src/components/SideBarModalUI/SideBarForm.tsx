@@ -18,10 +18,11 @@ import { ErrorContextDefault } from '../../context/ErrorContext';
 
 
 type SideBarFormType = {
-  data: InvoiceReturnDataType | null
+  data: InvoiceReturnDataType | null,
+  fieldError: { field: boolean, item: boolean };
 }
 
-export const SideBarForm: React.FC<SideBarFormType> = ({ data }: SideBarFormType): JSX.Element => {
+export const SideBarForm: React.FC<SideBarFormType> = ({ data, fieldError }: SideBarFormType): JSX.Element => {
 
   const [info, setInfo] = useContext(InfoContextDefault);
   const [error, setError] = useContext(ErrorContextDefault);
@@ -213,7 +214,9 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data }: SideBarFormType
           }
         />
 
-        <ItemListContainer info={info} error={error} setItemArray={setInfo} />
+        <ItemListContainer
+          fieldError={fieldError}
+          info={info} error={error} setItemArray={setInfo} />
 
         {/* Button footer */}
       </form>

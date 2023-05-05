@@ -20,12 +20,18 @@ import { InvoiceReturnDataType } from '../../Pages/InvoicePage/InvoiceTypes';
 import { InfoContextDefault } from '../../context/InfoContext';
 import { ErrorContextDefault } from '../../context/ErrorContext';
 import { AddressConstant, ErrorConstant } from './Sidebarhelper';
+import { DiscardInput, DiscardError, checkInput } from './SaveLogic';
 
 
 interface SideBarModalType extends SideBarModalProps {
   id?: string;
   edit?: boolean;
   data: InvoiceReturnDataType | null
+}
+
+type fieldErrorType = {
+  field: boolean,
+  item: boolean
 }
 
 export const SideBarModal: React.FC<SideBarModalType> = ({
@@ -39,6 +45,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
   const sidebarRef = useRef<HTMLDivElement>(null);
 
   const [info, setInfo] = useContext(InfoContextDefault)
+  const [fieldError, setFieldError] = useState<fieldErrorType>({ field: true, item: false })
   const [error, setError] = useContext(ErrorContextDefault)
 
   function handleClickOutside(
@@ -50,21 +57,6 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
     ) {
       onClose();
     }
-  }
-
-
-  //create error 
-  // code to create an error type
-  const createError = (err: boolean[], key: string, additionalKey?: string | null) => {
-    if (!additionalKey || additionalKey == null) {
-      setError({ ...error, [key]: true })
-    }
-    else {
-      const newError: any = { ...error }
-      newError[key][additionalKey] = true
-    }
-
-    err.push(true)
   }
 
 
@@ -91,6 +83,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
             <SideBarHeader header={edit ? `Edit #${id}` : 'New Invoice'} />
             <SideBarForm
               data={data}
+              fieldError={fieldError}
             />
           </div>
         </div>
@@ -106,21 +99,13 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
                 <EditButton
                   title={'Discard'}
                   handleClick={() => {
-
-                    // code to discard input
-                    const defaultInput = { ...AddressConstant }
-                    defaultInput.clientAddress.streetAddress = ''
-                    defaultInput.clientAddress.city = ''
-                    defaultInput.clientAddress.postCode = ''
-                    defaultInput.clientAddress.country = ''
-                    defaultInput.senderAddress.city = ''
-                    defaultInput.senderAddress.streetAddress = ''
-                    defaultInput.items = []
-
+                    setFieldError({ field: true, item: false })
+                    const defaultInput = DiscardInput(info)
+                    const defaultError = DiscardError(error)
 
                     setInfo(defaultInput)
-                    setError({ ...ErrorConstant })
-                    console.log('edit button clicked', info)
+                    setError(defaultError)
+                    console.log('edit button clicked', info, error)
                   }}
                 />
               </div>
@@ -128,6 +113,9 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
               <div className="btn-footer-left">
                 <SaveDraftButton
                   handleClick={() => {
+                    setFieldError({ field: false, item: false })
+                    const handleError = checkInput(info, error, setError)
+                    setFieldError({ field: handleError, item: info?.items.length === 0 })
 
                   }}
                 />

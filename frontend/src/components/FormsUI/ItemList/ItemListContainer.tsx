@@ -9,6 +9,7 @@ import { AddNewItem } from '../../ButtonsUI/AddNewItem';
 
 type ItemType = {
   info: FillFormType;
+  fieldError: { field: boolean, item: boolean },
   error: FillFormTypeError;
   setItemArray: any;
 };
@@ -17,6 +18,7 @@ export const ItemListContainer: React.FC<ItemType> = ({
   info,
   error,
   setItemArray,
+  fieldError
 }: ItemType): JSX.Element => {
   return (
     <div className="item-list-container">
@@ -54,6 +56,11 @@ export const ItemListContainer: React.FC<ItemType> = ({
           setItemArray(newInfo);
         }}
       />
+
+      {!fieldError.field && <div className='invoice-body-1 item-error'>- all field must be filled</div>}
+      {fieldError.item && <div className='invoice-body-1 item-error'>- an item must be added</div>}
+
+
     </div>
   );
 };
