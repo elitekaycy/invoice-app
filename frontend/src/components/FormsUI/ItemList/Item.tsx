@@ -89,7 +89,7 @@ export const Item: React.FC<ItemListType> = ({
           className={`invoice-h3-small ${theme?.theme === 'light' ? 'text-light' : 'text-dark'
             }`}
         >
-          {itemQuantity}
+          {Number(itemQuantity) * itemPrice}
         </span>
       </div>
       <div

@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import { getLogger } from "@/utils/loggers";
-import { InvoiceGetFromClientType, InvoiceSendToClientType } from "@/types";
 import { client } from "../db/dbConnnect.";
 import { InvoiceDelete } from "./InvoiceDelete";
 import { invoiceGet, invoiceGetAll } from "./InvoiceGet";

@@ -9,6 +9,8 @@ export const InvoiceCreate = function (
 ) {
   try {
     const newInvoice: InvoiceGetFromClientType = _req?.body;
+    console.log("req is ", _req);
+    console.log("new Invoice is ", newInvoice);
 
     client.query(
       `INSERT INTO invoice 
@@ -78,7 +80,7 @@ export const InvoiceCreate = function (
         });
 
         // pg closes client automatically
-        return res.status(201).send("created successfully");
+        return res.status(201).json({ status: 201, created: true });
       }
     );
   } catch (err) {

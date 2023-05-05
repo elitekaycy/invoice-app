@@ -20,7 +20,8 @@ import { InvoiceReturnDataType } from '../../Pages/InvoicePage/InvoiceTypes';
 import { InfoContextDefault } from '../../context/InfoContext';
 import { ErrorContextDefault } from '../../context/ErrorContext';
 import { AddressConstant, ErrorConstant } from './Sidebarhelper';
-import { DiscardInput, DiscardError, checkInput } from './SaveLogic';
+import { DiscardInput, DiscardError, checkInput, getItemTotal } from './SaveLogic';
+import { CreateInvoice } from '../../helpers/Api';
 
 
 interface SideBarModalType extends SideBarModalProps {
@@ -47,6 +48,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
   const [info, setInfo] = useContext(InfoContextDefault)
   const [fieldError, setFieldError] = useState<fieldErrorType>({ field: true, item: false })
   const [error, setError] = useContext(ErrorContextDefault)
+  const [loading, setLoading] = useState<boolean>(false)
 
   function handleClickOutside(
     event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
@@ -58,7 +60,6 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
       onClose();
     }
   }
-
 
 
   return (
@@ -112,10 +113,35 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
               <div className="btn-footer-left">
                 <SaveDraftButton
+                  label={loading ? 'loading' : 'Save as Draft'}
                   handleClick={() => {
                     setFieldError({ field: false, item: false })
                     const handleError = checkInput(info, error, setError)
                     setFieldError({ field: handleError, item: info?.items.length === 0 })
+
+                    // save
+                    if (handleError && info?.items.length > 0) {
+                      setLoading(true)
+                      const total = getItemTotal(info.items)
+                      const saveDraftInfo = { ...info, total, status: "Draft", paymentDue: info?.invoiceDate }
+
+                      console.log("save draft button ", saveDraftInfo)
+
+                      // save as draft - status is draft
+                      // total = total of all the items and price
+                      CreateInvoice(saveDraftInfo).then(data => {
+
+                        setLoading(false)
+                        onClose()
+
+                      }).catch(err => {
+                        console.error(err)
+                        alert(err)
+                      })
+
+                      setLoading(false)
+
+                    }
 
                   }}
                 />
@@ -128,6 +154,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
               <div className="btn-footer-left">
                 <SaveDraftButton
+                  label={"Save"}
                   handleClick={() => console.log('save draft')}
                 />
                 <SaveSend handleClick={() => console.log('handle click')} />
