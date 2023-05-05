@@ -1,4 +1,4 @@
-import { FillFormType, FillFormTypeError } from "./SidebarTypes";
+import { FillFormType, FillFormTypeError, ItemType } from "./SidebarTypes";
 import { AddressConstant, ErrorConstant } from "./Sidebarhelper";
 
 
@@ -87,4 +87,15 @@ export const checkInput = (form: FillFormType, errorA: FillFormTypeError, setErr
     console.log("errors constant ", Errors)
     return Errors.length === 0
 
+}
+
+
+//get total items
+export const getItemTotal = (items: ItemType[]) => {
+    let total = 0
+
+    items.forEach(item => {
+        total += (Number(item?.itemQuantity) * Number(item?.itemPrice))
+    })
+    return total
 }
