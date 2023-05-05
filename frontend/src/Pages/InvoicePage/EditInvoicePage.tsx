@@ -9,6 +9,7 @@ import { InvoiceReturnDataType } from './InvoiceTypes';
 import { InfoContextDefault } from '../../context/InfoContext';
 import { AddressConstant, ErrorConstant } from '../../components/SideBarModalUI/Sidebarhelper';
 import { ErrorContextDefault } from '../../context/ErrorContext';
+import { DiscardError } from '../../components/SideBarModalUI/SaveLogic';
 
 export const EditInvoicePage: React.FC = (): JSX.Element => {
   const navigate = useNavigate()
@@ -31,7 +32,8 @@ export const EditInvoicePage: React.FC = (): JSX.Element => {
         <div className="invoice-main">
           <Navigator
             handleClick={() => {
-              setError({ ...ErrorConstant })
+              const defaultError = DiscardError(error)
+              setError(defaultError)
               setInfo({ ...AddressConstant })
               navigate(-1)
             }}
@@ -51,6 +53,7 @@ export const EditInvoicePage: React.FC = (): JSX.Element => {
         onClose={() => {
           document.body.classList.remove('no-scroll');
           setOpen(false);
+          setError(DiscardError(error))
         }}
       />
     </>
