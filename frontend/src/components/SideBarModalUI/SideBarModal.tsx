@@ -129,6 +129,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
                       // save as draft - status is draft
                       // total = total of all the items and price
+                      // testing comment
                       CreateInvoice(saveDraftInfo).then(data => {
 
                         setLoading(false)
