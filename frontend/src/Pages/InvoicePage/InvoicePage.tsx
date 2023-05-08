@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import './InvoicePage.css';
 import {
   EditButton,
@@ -17,12 +17,26 @@ import { getInvoices } from '../../helpers/Api';
 export const InvoicePage: React.FC = (): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
   const [isInvoiceOpen, setIsInvoiceOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false)
 
   const [invoices, setInvoices] = useState<InvoiceDataType[] | []>([]);
 
+  const FetchData = () => {
+    setLoading(true)
+    getInvoices().then(data => {
+      setInvoices(data?.data)
+      setLoading(false)
+    }).catch(err => {
+      console.log("error is ", err)
+      setLoading(false)
+    })
+  }
+
+  const FetchCallBackData = useMemo(() => FetchData, [])
+
   useEffect(() => {
-    getInvoices().then(data => setInvoices(data?.data)).catch(err => console.log("error is ", err))
-  }, [])
+    FetchCallBackData()
+  }, [getInvoices])
 
   return (
     <React.Fragment>
@@ -49,7 +63,7 @@ export const InvoicePage: React.FC = (): JSX.Element => {
               />
             </div>
           </div>
-
+          <div>{loading ? 'loading...' : null}</div>
           <div className="invoice-sub-main">
             {invoices?.length > 0 &&
               invoices.map((invoice) => {

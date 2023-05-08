@@ -22,6 +22,7 @@ import { ErrorContextDefault } from '../../context/ErrorContext';
 import { AddressConstant, ErrorConstant } from './Sidebarhelper';
 import { DiscardInput, DiscardError, checkInput, getItemTotal } from './SaveLogic';
 import { CreateInvoice } from '../../helpers/Api';
+import { useNavigate } from 'react-router-dom';
 
 
 interface SideBarModalType extends SideBarModalProps {
@@ -44,6 +45,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 }: SideBarModalType): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
   const sidebarRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate()
 
   const [info, setInfo] = useContext(InfoContextDefault)
   const [fieldError, setFieldError] = useState<fieldErrorType>({ field: true, item: false })
@@ -131,9 +133,10 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
                       // total = total of all the items and price
                       // testing comment
                       CreateInvoice(saveDraftInfo).then(data => {
-
+                        console.log("return data is ", data)
                         setLoading(false)
                         onClose()
+                        navigate(`/invoice/${data?.data}`)
 
                       }).catch(err => {
                         console.error(err)

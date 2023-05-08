@@ -10,6 +10,7 @@ import { InfoContextDefault } from '../../context/InfoContext';
 import { AddressConstant, ErrorConstant } from '../../components/SideBarModalUI/Sidebarhelper';
 import { ErrorContextDefault } from '../../context/ErrorContext';
 import { DiscardError } from '../../components/SideBarModalUI/SaveLogic';
+import { EditInvoiceDatailComponent } from './Components/EditInvoiceMainComponent/EditInvoiceDetailComponent';
 
 export const EditInvoicePage: React.FC = (): JSX.Element => {
   const navigate = useNavigate()
@@ -43,6 +44,8 @@ export const EditInvoicePage: React.FC = (): JSX.Element => {
             status={EditInvoiceData ? EditInvoiceData?.status : null}
             handleOpen={() => setOpen(true)}
           />
+
+          <EditInvoiceDatailComponent data={EditInvoiceData || null} />
         </div>
       </div>
       <SideBarModal
