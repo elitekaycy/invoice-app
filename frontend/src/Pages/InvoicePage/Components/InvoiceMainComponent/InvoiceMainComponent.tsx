@@ -11,7 +11,7 @@ import {
   InvoiceNextType,
 } from './InvoiceMainTypes';
 import { useNavigate } from 'react-router-dom';
-import { StatusComp } from './InvoiceSubComponent/StatusComp';
+import { StatusComp, IdComp, ClientNameComp } from './InvoiceSubComponent/StatusComp';
 
 export const InvoiceMainComponent: React.FC<myProps> = (
   props: myProps
@@ -21,51 +21,27 @@ export const InvoiceMainComponent: React.FC<myProps> = (
 
   const navigate = useNavigate();
 
-  const IdComp: React.FC<IDType> = ({ id }: IDType): JSX.Element => {
-    return (
-      <div className="invoice-id invoice-h3-small">
-        <span className="invoice-hashtag">#</span>
-        {id}
-      </div>
-    );
-  };
-
   const PaymentComp: React.FC<PaymentType> = ({
     paymentDue,
   }: PaymentType): JSX.Element => {
     return (
       <div
-        className={`invoice-due invoice-body-1 ${
-          theme?.theme === 'light' ? 'invoice-due-light' : 'invoice-due-dark'
-        }`}
+        className={`invoice-due invoice-body-1 ${theme?.theme === 'light' ? 'invoice-due-light' : 'invoice-due-dark'
+          }`}
       >
         Due {paymentDue}
       </div>
     );
   };
 
-  const ClientNameComp: React.FC<ClientNameType> = ({
-    clientName,
-  }: ClientNameType): JSX.Element => {
-    return (
-      <div
-        className={`invoice-body-1 ${
-          theme?.theme === 'light' ? 'invoice-user-light' : 'invoice-user-dark'
-        }`}
-      >
-        {clientName}
-      </div>
-    );
-  };
 
   const TotalComp: React.FC<TotalType> = ({
     total,
   }: TotalType): JSX.Element => {
     return (
       <div
-        className={`invoice-h3 ${
-          theme?.theme === 'light' ? 'invoice-comp-light' : 'invoice-user-dark'
-        }`}
+        className={`invoice-h3 ${theme?.theme === 'light' ? 'invoice-comp-light' : 'invoice-user-dark'
+          }`}
       >
         $ {total}
       </div>
@@ -83,9 +59,8 @@ export const InvoiceMainComponent: React.FC<myProps> = (
   return (
     <div onClick={() => navigate(`invoice/${id}`)}>
       <div
-        className={`invoice-page-comp ${
-          theme?.theme === 'light' ? 'invoice-comp-light' : 'invoice-comp-dark'
-        }`}
+        className={`invoice-page-comp ${theme?.theme === 'light' ? 'invoice-comp-light' : 'invoice-comp-dark'
+          }`}
       >
         <IdComp id={id} />
         <PaymentComp paymentDue={paymentDue} />
@@ -96,9 +71,8 @@ export const InvoiceMainComponent: React.FC<myProps> = (
       </div>
 
       <div
-        className={`invoice-page-comp-small ${
-          theme?.theme === 'light' ? 'invoice-comp-light' : 'invoice-comp-dark'
-        }`}
+        className={`invoice-page-comp-small ${theme?.theme === 'light' ? 'invoice-comp-light' : 'invoice-comp-dark'
+          }`}
       >
         <div className="invoice-id-client invoice-spacing">
           <IdComp id={id} />

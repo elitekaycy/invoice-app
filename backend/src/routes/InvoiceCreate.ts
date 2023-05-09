@@ -80,7 +80,7 @@ export const InvoiceCreate = function (
         });
 
         // pg closes client automatically
-        return res.status(201).json({ status: 201, created: true });
+        return res.status(201).json({ status: 201, data: invoiceId });
       }
     );
   } catch (err) {
