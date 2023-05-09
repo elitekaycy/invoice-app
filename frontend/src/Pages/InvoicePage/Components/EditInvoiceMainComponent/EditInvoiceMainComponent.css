@@ -107,7 +107,7 @@ td {
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   margin-bottom: 14px;
 }
 
@@ -115,14 +115,14 @@ td {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .invoice-detail-side-reverse {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .edit-invoice-comp-1 {
@@ -135,7 +135,7 @@ td {
 .invoice-detail-second {
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: flex-start;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 20px;
@@ -144,7 +144,7 @@ td {
 .invoice-detail-second-row {
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   flex: 1;
   gap: 10px;
