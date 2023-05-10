@@ -91,6 +91,7 @@ export const InvoiceCreate = function (
 export const MarkAsPaid = (_req: Request, res: Response) => {
   const id: any = _req?.params?.id;
 
+  console.log("got request params ", id, _req?.params);
   try {
     client.query(
       `UPDATE invoice SET status = $1 where id = $2`,
@@ -100,7 +101,7 @@ export const MarkAsPaid = (_req: Request, res: Response) => {
           throw new Error(`error ${err?.name}: ${err?.message}`);
         }
 
-        res.status(201).send("mark as paid");
+        res.status(201).send({ created: true, data: id });
       }
     );
   } catch (err) {

@@ -43,6 +43,8 @@ export const EditInvoicePage: React.FC = (): JSX.Element => {
             id={String(id)}
             status={EditInvoiceData ? EditInvoiceData?.status : null}
             handleOpen={() => setOpen(true)}
+            editInvoice={EditInvoiceData || null}
+            handleEditInvoice={setEditInvoiceData}
           />
 
           <EditInvoiceDatailComponent data={EditInvoiceData || null} />

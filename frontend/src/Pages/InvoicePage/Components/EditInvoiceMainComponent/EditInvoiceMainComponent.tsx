@@ -5,17 +5,22 @@ import { StatusComp } from '../InvoiceMainComponent/InvoiceSubComponent/StatusCo
 import { EditButton, MarkButton } from '../../../../components';
 import { DeleteButton } from '../../../../components/ButtonsUI/DeleteButton';
 import { InvoiceReturnDataType } from '../../InvoiceTypes';
+import { MarkAsPaid } from '../../../../helpers/Api';
 
 type EditInvoiceMainCompType = {
   handleOpen: () => void;
   status: string | null,
   id: string;
+  editInvoice: InvoiceReturnDataType | any
+  handleEditInvoice: React.Dispatch<React.SetStateAction<InvoiceReturnDataType | null>>
 };
 
 export const EditInvoiceMainComponent: React.FC<EditInvoiceMainCompType> = ({
   status,
   handleOpen,
   id,
+  handleEditInvoice,
+  editInvoice
 }: EditInvoiceMainCompType): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
   return (
@@ -39,7 +44,18 @@ export const EditInvoiceMainComponent: React.FC<EditInvoiceMainCompType> = ({
         <div className="edit-btn-flex">
           <EditButton title="Edit" handleClick={() => handleOpen()} />
           <DeleteButton handleClick={() => console.log('delete button')} />
-          <MarkButton handleClick={() => console.log('mark button click')} />
+          <MarkButton handleClick={() => {
+            if (editInvoice.status !== 'paid') {
+              MarkAsPaid(Number(id)).then(data => {
+                if (data?.created) {
+                  handleEditInvoice({ ...editInvoice, status: "paid" })
+                }
+              }).catch(err => {
+                console.error(err)
+                alert("Error Occured " + err)
+              })
+            }
+          }} />
         </div>
       </div>
       <div
