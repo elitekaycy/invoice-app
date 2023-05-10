@@ -13,13 +13,25 @@ import { InvoiceDataType } from './InvoiceTypes';
 import { InvoiceMainComponent } from './Components/InvoiceMainComponent/InvoiceMainComponent';
 import { SideBarModal } from '../../components/SideBarModalUI/SideBarModal';
 import { getInvoices } from '../../helpers/Api';
+import Spinner from '../../components/Spinner/Spinner';
+import { Filter } from '../../components/Filter/Filter';
 
 export const InvoicePage: React.FC = (): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
   const [isInvoiceOpen, setIsInvoiceOpen] = useState<boolean>(false);
+  const [filterKeywords, setFilterKeywords] = useState<String[]>([])
   const [loading, setLoading] = useState<boolean>(false)
-
   const [invoices, setInvoices] = useState<InvoiceDataType[] | []>([]);
+
+  const filterData = () => {
+    if (filterKeywords.length <= 0 || invoices.length <= 0) {
+      return invoices
+    }
+
+    const new_filtered_word = [...filterKeywords].join()
+    return invoices.filter(invoice => new_filtered_word.toLowerCase().includes(invoice?.status))
+  }
+
 
   const FetchData = () => {
     setLoading(true)
@@ -54,6 +66,10 @@ export const InvoicePage: React.FC = (): JSX.Element => {
             </div>
 
             <div className="invoice-left">
+              <Filter
+                filteredKeywords={filterKeywords}
+                setFilteredKeywords={setFilterKeywords}
+              />
               <InvoiceButton
                 handleClick={() => {
                   document.body.classList.add('no-scroll');
@@ -63,10 +79,10 @@ export const InvoicePage: React.FC = (): JSX.Element => {
               />
             </div>
           </div>
-          <div>{loading ? 'loading...' : null}</div>
+          <div>{loading ? <Spinner /> : null}</div>
           <div className="invoice-sub-main">
             {invoices?.length > 0 &&
-              invoices.map((invoice) => {
+              filterData().map((invoice) => {
                 return (
                   <InvoiceMainComponent
                     key={invoice?.id}

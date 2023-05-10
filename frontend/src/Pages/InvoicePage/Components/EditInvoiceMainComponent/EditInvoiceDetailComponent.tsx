@@ -43,12 +43,12 @@ export const EditInvoiceDatailComponent: React.FC<EditDetailCompTypes> = ({
                         <div className='invoice-child-one'>
                             <div className='invoice-child-container'>
                                 <div className={`invoice-body-1 ${theme?.theme === 'light' ? 'invoice-text-header-light' : 'invoice-text-header-dark'}`}>Invoice Date</div>
-                                <div className={`invoice-h3 ${theme?.theme === 'light' ? 'invoice-text-light' : 'invoice-text-dark'}`}>{(new Date(String(data?.created_at))).toDateString()}</div>
+                                <div className={`invoice-h3 ${theme?.theme === 'light' ? 'invoice-text-light' : 'invoice-text-dark'}`}>{(new Date(String(data?.created_at))).toDateString().slice(0, 10)}</div>
                             </div>
 
                             <div className='invoice-child-container'>
                                 <div className={`invoice-body-1 ${theme?.theme === 'light' ? 'invoice-text-header-light' : 'invoice-text-header-dark'}`}>Payment Due</div>
-                                <div className={`invoice-h3 ${theme?.theme === 'light' ? 'invoice-text-light' : 'invoice-text-dark'}`}>{(new Date(String(data?.paymentdue))).toDateString()}</div>
+                                <div className={`invoice-h3 ${theme?.theme === 'light' ? 'invoice-text-light' : 'invoice-text-dark'}`}>{(new Date(String(data?.paymentdue))).toDateString().slice(0, 10)}</div>
                             </div>
                         </div>
 
@@ -81,22 +81,24 @@ export const EditInvoiceDatailComponent: React.FC<EditDetailCompTypes> = ({
                     <div className='items-child-container'>
                         <div className='item-display'>
                             <table className='items-table'>
-                                <tr className='item-table-row '>
-                                    <td className={`invoice-body-1 ${theme?.theme === 'light' ? 'invoice-text-header-light' : 'invoice-text-header-dark'}`}>Item Name</td>
-                                    <td className={`invoice-body-1 ${theme?.theme === 'light' ? 'invoice-text-header-light' : 'invoice-text-header-dark'} item-center`}>QTY.</td>
-                                    <td className={`invoice-body-1 ${theme?.theme === 'light' ? 'invoice-text-header-light' : 'invoice-text-header-dark'} item-end`}>Price</td>
-                                    <td className={`invoice-body-1 ${theme?.theme === 'light' ? 'invoice-text-header-light' : 'invoice-text-header-dark'} item-end`}>Total</td>
-                                </tr>
-                                {data?.items && data?.items.map(item => {
-                                    return (
-                                        <tr key={item.id} className={`items-child item-table-row`}>
-                                            <td className={`invoice-h3-small ${theme?.theme === 'light' ? 'invoice-text-light' : 'invoice-text-dark'}`}>{item?.name}</td>
-                                            <td className={`invoice-h3-small item-center ${theme?.theme === 'light' ? 'invoice-text-light-default' : 'invoice-text-dark'}`}>{item?.quantity}</td>
-                                            <td className={`invoice-h3-small item-end ${theme?.theme === 'light' ? 'invoice-text-light-default' : 'invoice-text-dark'}`}>{item?.price}</td>
-                                            <td className={`invoice-h3-small item-end ${theme?.theme === 'light' ? 'invoice-text-light' : 'invoice-text-dark'}`}>{Number(item?.quantity) * Number(item.price)}</td>
-                                        </tr>
-                                    )
-                                })}
+                                <tbody>
+                                    <tr className='item-table-row '>
+                                        <td className={`invoice-body-1 ${theme?.theme === 'light' ? 'invoice-text-header-light' : 'invoice-text-header-dark'}`}>Item Name</td>
+                                        <td className={`invoice-body-1 ${theme?.theme === 'light' ? 'invoice-text-header-light' : 'invoice-text-header-dark'} item-center`}>QTY.</td>
+                                        <td className={`invoice-body-1 ${theme?.theme === 'light' ? 'invoice-text-header-light' : 'invoice-text-header-dark'} item-end`}>Price</td>
+                                        <td className={`invoice-body-1 ${theme?.theme === 'light' ? 'invoice-text-header-light' : 'invoice-text-header-dark'} item-end`}>Total</td>
+                                    </tr>
+                                    {data?.items && data?.items.map(item => {
+                                        return (
+                                            <tr key={item.id} className={`items-child item-table-row`}>
+                                                <td className={`invoice-h3-small ${theme?.theme === 'light' ? 'invoice-text-light' : 'invoice-text-dark'}`}>{item?.name}</td>
+                                                <td className={`invoice-h3-small item-center ${theme?.theme === 'light' ? 'invoice-text-light-default' : 'invoice-text-dark'}`}>{item?.quantity}</td>
+                                                <td className={`invoice-h3-small item-end ${theme?.theme === 'light' ? 'invoice-text-light-default' : 'invoice-text-dark'}`}>{item?.price}</td>
+                                                <td className={`invoice-h3-small item-end ${theme?.theme === 'light' ? 'invoice-text-light' : 'invoice-text-dark'}`}>{Number(item?.quantity) * Number(item.price)}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
                             </table>
                         </div>
 

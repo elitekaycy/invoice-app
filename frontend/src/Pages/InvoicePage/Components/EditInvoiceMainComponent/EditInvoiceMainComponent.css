@@ -145,13 +145,14 @@ td {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: space-around;
   flex: 1;
   gap: 10px;
 }
 .invoice-child-one {
   display: flex;
   flex-direction: column;
+  justify-self: flex-start;
   gap: 30px;
 }
 
