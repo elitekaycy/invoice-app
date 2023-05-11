@@ -7,6 +7,7 @@ import { ThemeContext } from './context/ThemeContext';
 import '@fontsource/spartan';
 import { ErrorContext } from './context/ErrorContext';
 import { InfoContext } from './context/InfoContext';
+import { EditInvoiceContext } from './context/EditInvoiceContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,7 +17,9 @@ root.render(
     <ThemeContext>
       <ErrorContext>
         <InfoContext>
-          <App />
+          <EditInvoiceContext>
+            <App />
+          </EditInvoiceContext>
         </InfoContext>
       </ErrorContext>
     </ThemeContext>

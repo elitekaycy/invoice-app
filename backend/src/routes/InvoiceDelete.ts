@@ -11,7 +11,7 @@ export const InvoiceDelete = (_req: Request, res: Response) => {
         throw new Error(`caught error at delete ${err?.name}: ${err.message}`);
       }
 
-      return res.status(204).send(`deleted succesfully ${id}`);
+      return res.status(204);
     });
   } catch (err) {
     console.log(`error caught ${err}`);

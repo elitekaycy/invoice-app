@@ -11,13 +11,14 @@ import { AddressConstant, ErrorConstant } from '../../components/SideBarModalUI/
 import { ErrorContextDefault } from '../../context/ErrorContext';
 import { DiscardError } from '../../components/SideBarModalUI/SaveLogic';
 import { EditInvoiceDatailComponent } from './Components/EditInvoiceMainComponent/EditInvoiceDetailComponent';
+import { EditInvoiceContextDefault } from '../../context/EditInvoiceContext';
 
 export const EditInvoicePage: React.FC = (): JSX.Element => {
   const navigate = useNavigate()
   const [error, setError] = useContext(ErrorContextDefault)
   const [info, setInfo] = useContext(InfoContextDefault)
   const [open, setOpen] = useState<boolean>(false);
-  const [EditInvoiceData, setEditInvoiceData] = useState<InvoiceReturnDataType | null>(null)
+  const [EditInvoiceData, setEditInvoiceData] = useContext(EditInvoiceContextDefault)
   const { id } = useParams();
 
   useEffect(() => {

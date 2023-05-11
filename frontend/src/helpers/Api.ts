@@ -72,3 +72,39 @@ export function MarkAsPaid(id: Number): Promise<any> {
       throw error;
     });
 }
+
+// delete invoice
+export function DeleteInvoice(id: Number): Promise<any> {
+  return fetch(`${host}/invoice/delete/${id}`, {
+    method: 'DELETE',
+  })
+    .then(() => {
+      console.log('delete request succesful');
+      return { deleted: true };
+    })
+    .catch((err) => {
+      console.error(`Error fetching data: ${err}`);
+      throw err;
+    });
+}
+
+//edit an invoice and amend it
+export function CreateEditInvoice(
+  id: number,
+  body: InvoiceGetFromClientType
+): Promise<any> {
+  return fetch(`${host}/edit/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((error) => {
+      console.error(`Error fetching data: ${error}`);
+      throw error;
+    });
+}

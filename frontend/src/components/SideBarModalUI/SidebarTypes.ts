@@ -29,6 +29,7 @@ export interface ItemType {
   itemName: string;
   itemQuantity: string;
   itemPrice: number;
+  id?: number;
 }
 
 export interface FillFormType {
@@ -63,4 +64,5 @@ export interface InvoiceGetFromClientType {
   projectDescription: string;
   items: ItemType[];
   total: number;
+  id?: Number;
 }

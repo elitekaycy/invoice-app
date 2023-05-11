@@ -66,6 +66,7 @@ export const InitialEditInfo = (data: InvoiceReturnDataType | null) => {
             },
             items: data?.items.map(item => {
                 return ({
+                    id: item?.id,
                     itemName: item?.name,
                     itemQuantity: String(item?.quantity),
                     itemPrice: Number(item?.price)
@@ -76,6 +77,7 @@ export const InitialEditInfo = (data: InvoiceReturnDataType | null) => {
             invoiceDate: String(data?.paymentdue),
             paymentTerms: Number(data?.paymentterms),
             projectDescription: data?.description,
+            id: data?.id
         }
     }
 

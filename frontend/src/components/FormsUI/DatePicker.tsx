@@ -37,7 +37,7 @@ const Datepicker: React.FC<DatePickerProps> = ({
         className={`input-date-picker ${theme?.theme === 'light' ? 'input-light' : 'text-field-dark'
           }`}
         type="date"
-        value={value.toISOString().substr(0, 10)}
+        value={value.toISOString().slice(0, 10) || (new Date()).toDateString().slice(0, 10)}
         onChange={(e) => onChange(e)}
         min="2021-01-01"
         max="2023-12-31"

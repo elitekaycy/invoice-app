@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './EditInvoiceMainComponent.css';
 import { ThemeContextDefault } from '../../../../context/ThemeContext';
 import { StatusComp } from '../InvoiceMainComponent/InvoiceSubComponent/StatusComp';
@@ -6,6 +6,7 @@ import { EditButton, MarkButton } from '../../../../components';
 import { DeleteButton } from '../../../../components/ButtonsUI/DeleteButton';
 import { InvoiceReturnDataType } from '../../InvoiceTypes';
 import { MarkAsPaid } from '../../../../helpers/Api';
+import { DeleteModal } from '../../../../components/Modal/DeleteModal';
 
 type EditInvoiceMainCompType = {
   handleOpen: () => void;
@@ -23,6 +24,23 @@ export const EditInvoiceMainComponent: React.FC<EditInvoiceMainCompType> = ({
   editInvoice
 }: EditInvoiceMainCompType): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+
+
+  const MarkasPaidFunct = () => {
+    if (editInvoice.status !== 'paid') {
+      MarkAsPaid(Number(id)).then(data => {
+        if (data?.created) {
+          handleEditInvoice({ ...editInvoice, status: "paid" })
+        }
+      }).catch(err => {
+        console.error(err)
+        alert("Error Occured " + err)
+      })
+    }
+  }
+
+
   return (
     <>
       <div
@@ -43,19 +61,8 @@ export const EditInvoiceMainComponent: React.FC<EditInvoiceMainCompType> = ({
 
         <div className="edit-btn-flex">
           <EditButton title="Edit" handleClick={() => handleOpen()} />
-          <DeleteButton handleClick={() => console.log('delete button')} />
-          <MarkButton handleClick={() => {
-            if (editInvoice.status !== 'paid') {
-              MarkAsPaid(Number(id)).then(data => {
-                if (data?.created) {
-                  handleEditInvoice({ ...editInvoice, status: "paid" })
-                }
-              }).catch(err => {
-                console.error(err)
-                alert("Error Occured " + err)
-              })
-            }
-          }} />
+          <DeleteButton loading={false} handleClick={() => setIsModalOpen(true)} />
+          <MarkButton handleClick={() => MarkasPaidFunct()} />
         </div>
       </div>
       <div
@@ -63,9 +70,14 @@ export const EditInvoiceMainComponent: React.FC<EditInvoiceMainCompType> = ({
           }`}
       >
         <EditButton title="Edit" handleClick={() => handleOpen()} />
-        <DeleteButton handleClick={() => console.log('delete button')} />
-        <MarkButton handleClick={() => console.log('mark button click')} />
+        <DeleteButton loading={false} handleClick={() => setIsModalOpen(true)} />
+        <MarkButton handleClick={() => MarkasPaidFunct()} />
       </div>
+      <DeleteModal
+        isOpen={isModalOpen}
+        id={Number(id)}
+        setIsOpen={setIsModalOpen}
+      />
     </>
   );
 };
