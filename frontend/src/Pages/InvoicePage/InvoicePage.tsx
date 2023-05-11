@@ -29,7 +29,7 @@ export const InvoicePage: React.FC = (): JSX.Element => {
     }
 
     const new_filtered_word = [...filterKeywords].join()
-    return invoices.filter(invoice => new_filtered_word.toLowerCase().includes(invoice?.status))
+    return invoices.filter(invoice => new_filtered_word.toLowerCase().includes(invoice?.status.toLowerCase()))
   }
 
 

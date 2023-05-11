@@ -21,8 +21,9 @@ import { InfoContextDefault } from '../../context/InfoContext';
 import { ErrorContextDefault } from '../../context/ErrorContext';
 import { AddressConstant, ErrorConstant } from './Sidebarhelper';
 import { DiscardInput, DiscardError, checkInput, getItemTotal } from './SaveLogic';
-import { CreateInvoice } from '../../helpers/Api';
+import { CreateEditInvoice, CreateInvoice } from '../../helpers/Api';
 import { useNavigate } from 'react-router-dom';
+import { EditInvoiceContextDefault } from '../../context/EditInvoiceContext';
 
 
 interface SideBarModalType extends SideBarModalProps {
@@ -50,7 +51,9 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
   const [info, setInfo] = useContext(InfoContextDefault)
   const [fieldError, setFieldError] = useState<fieldErrorType>({ field: true, item: false })
   const [error, setError] = useContext(ErrorContextDefault)
+  const [editInvoice, setEditInvoice] = useContext(EditInvoiceContextDefault)
   const [loading, setLoading] = useState<boolean>(false)
+  const [saveDraftLoading, setSaveDraftLoading] = useState<boolean>(false)
 
   function handleClickOutside(
     event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
@@ -61,6 +64,14 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
     ) {
       onClose();
     }
+  }
+
+  const errorChecker = () => {
+    setFieldError({ field: false, item: false })
+    const handleError = checkInput(info, error, setError)
+    setFieldError({ field: handleError, item: info?.items.length === 0 })
+
+    return handleError && info?.items.length > 0
   }
 
 
@@ -115,23 +126,19 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
               <div className="btn-footer-left">
                 <SaveDraftButton
-                  label={loading ? 'loading' : 'Save as Draft'}
+                  label={'Save as Draft'}
+                  loading={loading}
                   handleClick={() => {
-                    setFieldError({ field: false, item: false })
-                    const handleError = checkInput(info, error, setError)
-                    setFieldError({ field: handleError, item: info?.items.length === 0 })
 
                     // save
-                    if (handleError && info?.items.length > 0) {
+                    if (errorChecker()) {
                       setLoading(true)
                       const total = getItemTotal(info.items)
                       const saveDraftInfo = { ...info, total, status: "Draft", paymentDue: info?.invoiceDate }
 
                       console.log("save draft button ", saveDraftInfo)
 
-                      // save as draft - status is draft
-                      // total = total of all the items and price
-                      // testing comment
+
                       CreateInvoice(saveDraftInfo).then(data => {
                         console.log("return data is ", data)
                         setLoading(false)
@@ -159,7 +166,34 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
               <div className="btn-footer-left">
                 <SaveDraftButton
                   label={"Save"}
-                  handleClick={() => console.log('save draft')}
+                  loading={saveDraftLoading}
+                  handleClick={() => {
+                    //save draft code
+                    if (errorChecker()) {
+
+                      setSaveDraftLoading(true)
+                      const total = getItemTotal(info.items)
+
+                      const new_edit_invoice = { ...info, status: data?.status, paymentDue: info?.invoiceDate, total }
+
+                      console.log("new edit is ", new_edit_invoice)
+
+                      CreateEditInvoice(Number(id), new_edit_invoice).then(data => {
+                        setSaveDraftLoading(false)
+                        console.log("new edit ", new_edit_invoice)
+                        onClose()
+                        navigate(0)
+                      }).catch(err => {
+                        console.error(err)
+                        alert("save edit error " + err)
+                        setSaveDraftLoading(false)
+                      })
+
+                      setSaveDraftLoading(false)
+                    }
+
+
+                  }}
                 />
                 <SaveSend handleClick={() => console.log('handle click')} />
               </div>

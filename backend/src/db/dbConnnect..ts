@@ -41,7 +41,7 @@ const createTableQueries = [
       id SERIAL PRIMARY KEY UNIQUE,
       name varchar(100) NOT NULL,
       quantity integer NOT NULL,
-      price money NOT NULL,
+      price integer NOT NULL,
       invoice_id SERIAL REFERENCES invoice(id) ON DELETE CASCADE
     )
   `,

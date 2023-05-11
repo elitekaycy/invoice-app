@@ -105,7 +105,6 @@ export const EditInvoiceDatailComponent: React.FC<EditDetailCompTypes> = ({
                         <div className='item-banner'>
                             {data?.items && data?.items.map(item => {
                                 return (
-
                                     <div key={item.id} className='item-banner-1'>
                                         <div className='item-banner-sub'>
                                             <div className={`invoice-h3-small ${theme?.theme === 'light' ? 'invoice-text-light' : 'invoice-text-dark'}`}>{item?.name}</div>

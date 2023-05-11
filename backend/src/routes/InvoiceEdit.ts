@@ -11,6 +11,10 @@ export const InvoiceEdit = function (
     const newInvoice: InvoiceGetFromClientType = _req?.body;
     const id: any = _req?.params?.id;
 
+    console.log(_req.body);
+    console.log("new invoice is ", newInvoice);
+
+    console.log("id is ", id);
     client.query(
       `UPDATE invoice SET clientName = $1, clientEmail = $2, status = $3, paymentDue = $4, paymentTerms = $5, description = $6,
       total = $7 where id = $8 RETURNING id`,
@@ -65,21 +69,28 @@ export const InvoiceEdit = function (
           );
         }
 
-        newInvoice?.items?.forEach((item) => {
-          client.query(
-            `UPDATE items SET name = $1, quantity = $2, price = $3 WHERE invoice_id = $4`,
-            [item?.itemName, item?.itemQuantity, item?.itemPrice, invoiceId],
-            (err, result) => {
-              if (err) {
-                // delete invoice here
-                throw new Error(`${err?.name}: ${err?.message}`);
+        newInvoice?.items?.forEach(async (item) => {
+          if (!item.id) {
+            const addItem = await client.query(
+              `INSERT INTO items (name, quantity, price, invoice_id) VALUES ($1, $2, $3, $4)`,
+              [item?.itemName, item?.itemQuantity, item?.itemPrice, id]
+            );
+          } else {
+            client.query(
+              `UPDATE items SET name = $1, quantity = $2, price = $3 WHERE id = $4`,
+              [item?.itemName, item?.itemQuantity, item?.itemPrice, item?.id],
+              (err, result) => {
+                if (err) {
+                  // delete invoice here
+                  throw new Error(`${err?.name}: ${err?.message}`);
+                }
               }
-            }
-          );
+            );
+          }
         });
 
         // pg closes client automatically
-        return res.status(201).send("edited successfully");
+        return res.status(201).json({ edited: true, data: id });
       }
     );
   } catch (err) {

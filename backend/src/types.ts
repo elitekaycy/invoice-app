@@ -6,6 +6,7 @@ export interface Bill {
 }
 
 export interface ItemType {
+  id?: number;
   itemName: string;
   itemQuantity: string;
   itemPrice: number;
@@ -21,6 +22,7 @@ export interface InvoiceGetFromClientType {
   paymentTerms: number;
   projectDescription: string;
   items: ItemType[];
+  id?: number;
   total: number;
 }
 
