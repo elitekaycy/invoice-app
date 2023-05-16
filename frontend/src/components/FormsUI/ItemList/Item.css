@@ -6,6 +6,19 @@
   margin-botton: 20px;
 }
 
+.item-table {
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.lbl {
+  color: var(--invoice-dark-default);
+}
+
+.item-table-row {
+  width: 100%;
+}
+
 .item-delete {
   cursor: pointer;
 }
@@ -41,13 +54,11 @@
 }
 
 .item {
-  display: flex;
   width: 100%;
-  flex-direction: row;
-  align-items: center;
-  height: 48px;
-  gap: 20px;
-  margin-bottom: 20px;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .item-label {

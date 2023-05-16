@@ -5,6 +5,8 @@ import { InvoiceDelete } from "./InvoiceDelete";
 import { invoiceGet, invoiceGetAll } from "./InvoiceGet";
 import { InvoiceCreate, MarkAsPaid } from "./InvoiceCreate";
 import { InvoiceEdit } from "./InvoiceEdit";
+import { sendTestEmail } from "./Mailer";
+
 const router = express.Router();
 
 // create invoice router
@@ -16,6 +18,8 @@ const router = express.Router();
 */
 
 router.post("/create", InvoiceCreate);
+
+router.post("/send", sendTestEmail, InvoiceCreate);
 
 router.put("/edit/:id", InvoiceEdit);
 

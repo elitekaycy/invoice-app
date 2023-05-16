@@ -43,7 +43,7 @@ export const InvoiceMainComponent: React.FC<myProps> = (
         className={`invoice-h3 ${theme?.theme === 'light' ? 'invoice-comp-light' : 'invoice-user-dark'
           }`}
       >
-        $ {total}
+        {total}
       </div>
     );
   };

@@ -37,71 +37,73 @@ export const Item: React.FC<ItemListType> = ({
   }
 
   return (
-    <div className="item">
-      <div>
-        <input
-          required
-          type="text"
-          name="itemName"
-          value={itemName}
-          onChange={(e) => {
+    <>
+      <tr className="">
+        <td className='text-center'>
+          <input
+            required
+            type="text"
+            name="itemName"
+            value={itemName}
+            onChange={(e) => {
+              const newInfo = { ...info };
+              let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
+              newInfo.items[itemsIndex]['itemName'] = e.target.value;
+              setItem(newInfo);
+            }}
+            className={`item-name-input ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
+              }`}
+          />
+        </td>
+        <td className='text-center'>
+          <input
+            required
+            type="string"
+            className={`item-qty ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
+              }`}
+            value={itemQuantity}
+            onChange={(e) => {
+              const newInfo = { ...info };
+              let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
+              newInfo.items[itemsIndex]['itemQuantity'] = e.target.value;
+              setItem(newInfo);
+            }}
+          />
+        </td>
+        <td className='text-center'>
+          <input
+            required
+            type="number"
+            className={`item-price ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
+              }`}
+            value={itemPrice}
+            onChange={(e) => {
+              const newInfo = { ...info };
+              let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
+              newInfo.items[itemsIndex]['itemPrice'] = Number(e.target.value);
+              setItem(newInfo);
+            }}
+          />
+        </td>
+        <td className='text-center'>
+          <span
+            className={`invoice-h3-small ${theme?.theme === 'light' ? 'text-light' : 'text-dark'
+              }`}
+          >
+            {Number(itemQuantity) * itemPrice}
+          </span>
+        </td>
+        <td
+          onClick={() => {
             const newInfo = { ...info };
-            let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
-            newInfo.items[itemsIndex]['itemName'] = e.target.value;
+            newInfo.items = newInfo?.items.filter((item, idx) => idx !== id);
             setItem(newInfo);
           }}
-          className={`item-name-input ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
-            }`}
-        />
-      </div>
-      <div>
-        <input
-          required
-          type="string"
-          className={`item-qty ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
-            }`}
-          value={itemQuantity}
-          onChange={(e) => {
-            const newInfo = { ...info };
-            let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
-            newInfo.items[itemsIndex]['itemQuantity'] = e.target.value;
-            setItem(newInfo);
-          }}
-        />
-      </div>
-      <div>
-        <input
-          required
-          type="number"
-          className={`item-price ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
-            }`}
-          value={itemPrice}
-          onChange={(e) => {
-            const newInfo = { ...info };
-            let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
-            newInfo.items[itemsIndex]['itemPrice'] = Number(e.target.value);
-            setItem(newInfo);
-          }}
-        />
-      </div>
-      <div>
-        <span
-          className={`invoice-h3-small ${theme?.theme === 'light' ? 'text-light' : 'text-dark'
-            }`}
+          className="item-delete text-center"
         >
-          {Number(itemQuantity) * itemPrice}
-        </span>
-      </div>
-      <div
-        onClick={() => {
-          const newInfo = { ...info };
-          newInfo.items = newInfo?.items.filter((item, idx) => idx !== id);
-          setItem(newInfo);
-        }}
-        className="item-delete"
-      >
-        <img src={deleteIcon} alt="delete" />
-      </div>
-    </div>
+          <img src={deleteIcon} alt="delete" />
+        </td>
+      </tr>
+    </>
   );
 };

@@ -72,7 +72,7 @@ export const EditInvoiceDatailComponent: React.FC<EditDetailCompTypes> = ({
                     <div className='invoice-child-container'>
                         <div className='invoice-child-container'>
                             <div className={`invoice-body-1 ${theme?.theme === 'light' ? 'invoice-text-header-light' : 'invoice-text-header-dark'}`}>Sent To</div>
-                            <div className={`invoice-h3 ${theme?.theme === 'light' ? 'invoice-text-light' : 'invoice-text-dark'}`}>{data?.clientemail}</div>
+                            <div className={`invoice-h3-small sent-to ${theme?.theme === 'light' ? 'invoice-text-light' : 'invoice-text-dark'}`}>{data?.clientemail}</div>
                         </div>
                     </div>
                 </div>

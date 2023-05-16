@@ -22,24 +22,36 @@ export const ItemListContainer: React.FC<ItemType> = ({
 }: ItemType): JSX.Element => {
   return (
     <div className="item-list-container">
-      <div className="item-header">
+      {/* <div className="item-header">
         <span className="invoice-body-1 label itm-name">Item name</span>
         <span className="invoice-body-1 label itm-qty">Qty.</span>
         <span className="invoice-body-1 label itm-price">Item Price</span>
         <span className="invoice-body-1 label itm-total">Total</span>
-      </div>
+      </div> */}
 
-      {info?.items &&
-        info?.items.map((item, idx) => (
-          <Item
-            key={idx}
-            id={idx}
-            error={error}
-            info={info}
-            value={item}
-            setItem={setItemArray}
-          />
-        ))}
+      <table className='item-table'>
+        <tbody>
+          <tr>
+            <td className="invoice-body-1 lbl">Item name</td>
+            <td className="invoice-body-1 lbl text-center">Qty.</td>
+            <td className="invoice-body-1 lbl text-center">Item Price</td>
+            <td className="invoice-body-1 lbl">Total</td>
+            <td className='invoice-body-1 lbl'></td>
+          </tr>
+          {info?.items &&
+            info?.items.map((item, idx) => (
+              <Item
+                key={idx}
+                id={idx}
+                error={error}
+                info={info}
+                value={item}
+                setItem={setItemArray}
+              />
+            ))}
+        </tbody>
+      </table>
+
 
       <AddNewItem
         handleClick={() => {

@@ -1,204 +1,208 @@
 .invoice-btn-shape {
-    width: 150px;
-    height: 48px;
-    background-color: var(--invoice-purple);
-    border: 0px;
-    border-radius: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-left: 10px;
-    padding-right: 20px;
-    align-items: center;
-    cursor: pointer;
+  width: 150px;
+  height: 48px;
+  background-color: var(--invoice-purple);
+  border: 0px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 20px;
+  align-items: center;
+  cursor: pointer;
 }
 
 .edit-btn-flex {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 }
 
 .delbtn {
-    color: white;
-    background-color: var(--invoice-red);
-    max-width: 89px;
-    width: 100%;
+  color: white;
+  background-color: var(--invoice-red);
+  max-width: 89px;
+  width: 100%;
 }
 
 .delbtn:hover {
-    background-color: var(--invoice-red-light)
+  background-color: var(--invoice-red-light);
 }
 
 .btn-add {
-    width: 100%;
-    border-radius: 24px;
-    border: 0;
-    height: 48px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  border-radius: 24px;
+  border: 0;
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
 }
 
 .btn-add-light:hover {
-    background-color: #DFE3FA;
+  background-color: #dfe3fa;
 }
 
 .btn-add-dark:hover {
-    background-color: var(--invoice-gray)
+  background-color: var(--invoice-gray);
 }
 
 .btn-plus {
-    color: #ffffff;
-    cursor: pointer;
+  color: white;
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
 }
 
 .add-btn-light {
-    color: var(--invoice-dark-default);
-    background-color: #F9FAFE;
+  color: var(--invoice-dark-default);
+  background-color: #f9fafe;
+}
+
+.add-btn-light:hover {
+  background-color: var(--invoice-light);
+  color: var(--invoice-dark-default);
 }
 
 .add-btn-dark {
-    color: #FFFFFF;
-    background-color: var(--invoice-gray-light)
+  color: #ffffff;
+  background-color: var(--invoice-gray-light);
 }
 
 .btn-default {
-    width: 131px;
-    height: 48px;
-    border: 0px;
-    border-radius: 50px;
+  width: 131px;
+  height: 48px;
+  border: 0px;
+  border-radius: 50px;
 }
 
 .btn-md {
-    width: 133px;
-    height: 48px;
-    border: 0px;
-    border-radius: 50px;
-    cursor: pointer;
+  width: 133px;
+  height: 48px;
+  border: 0px;
+  border-radius: 50px;
+  cursor: pointer;
 }
 
 .draft-btn-light {
-   background-color: #373B53;
-   color: #888EB0;
+  background-color: #373b53;
+  color: #888eb0;
 }
 
-.draft-btn-light:hover{
-   background-color: #373B53;
-   color: #DFE3FA;
+.draft-btn-light:hover {
+  background-color: #373b53;
+  color: #dfe3fa;
 }
 
 .draft-btn-dark {
-   background-color: #0C0E16;
-   color: #888EB0;
+  background-color: #0c0e16;
+  color: #888eb0;
 }
 
 .draft-btn-dark:hover {
-    background-color: #1E2139;
-    color: var(--invoice-light);
+  background-color: #1e2139;
+  color: var(--invoice-light);
 }
-
-
 
 /* mark as paid button */
 .mrkbtn {
-    cursor: pointer;
-    background-color: var(--invoice-purple);
+  cursor: pointer;
+  background-color: var(--invoice-purple);
 }
 
 .mrkbtn:hover {
-    background-color: var(--invoice-purple-light);
+  background-color: var(--invoice-purple-light);
 }
 
 /* mark as button end */
 
-
 /* edit Button */
 .btn-small {
-    width: 73px;
-    height: 48px;
-    border-radius: 50px;
-    border: 0px;
-    cursor: pointer;
+  width: 73px;
+  height: 48px;
+  border-radius: 50px;
+  border: 0px;
+  cursor: pointer;
 }
 
 .edit-btn-light {
-    background-color: #F9FAFE;
-    color: var(--invoice-dark-default);
+  background-color: #f9fafe;
+  color: var(--invoice-dark-default);
 }
 
 .edit-btn-light:hover {
-    background-color: var(--invoice-gray-light);
-    color: var(--invoice-light);
+  background-color: var(--invoice-gray-light);
+  color: var(--invoice-light);
 }
 
 .edit-btn-dark {
-    background-color: var(--invoice-light);
-    color: var(--invoice-dark-default)
+  background-color: var(--invoice-light);
+  color: var(--invoice-dark-default);
 }
 
 .edit-btn-dark:hover {
-    background-color: #FFFFFF;
-    color: var(--invoice-light);
+  background-color: #ffffff;
+  color: var(--invoice-light);
 }
 
 /* edit button end */
 
-
 .invoice-btn-shape:hover {
-    background-color: var(--invoice-purple-light)
+  background-color: var(--invoice-purple-light);
 }
 
 .btn-icon {
-    width: 32px;
-    height: 32px;
-    border: 0px;
-    border-radius: 50px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0px;
+  border-radius: 50px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-image {
-     width: 10px;
-     height: 10px;
+  width: 10px;
+  height: 10px;
 }
 
 .btn-center {
-    text-align: center;
+  text-align: center;
 }
 
 .btn-white {
-    color: white;
+  color: white;
 }
 
 .btn-text {
-    color: white;
+  color: white;
 }
 
 .btn-text::before {
-    content: 'New Invoice'
+  content: 'New Invoice';
 }
-
 
 @media (max-width: 375px) {
-    .invoice-btn-shape {
-        width: 90px;
-        height: 44px;
-        padding-left: 6px;
-        padding-right: 14px;
-    }
+  .invoice-btn-shape {
+    width: 90px;
+    height: 44px;
+    padding-left: 6px;
+    padding-right: 14px;
+  }
 
-    .btn-text::before {
-        content: 'New'
-    }
+  .btn-text::before {
+    content: 'New';
+  }
 }
 
-@media (max-width: 550px){
-    .btn-md {
-        max-width: 90px;
-        width: 100%;
-    }
+@media (max-width: 550px) {
+  .btn-md {
+    max-width: 90px;
+    width: 100%;
+  }
 }

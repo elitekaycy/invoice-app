@@ -21,9 +21,10 @@ import { InfoContextDefault } from '../../context/InfoContext';
 import { ErrorContextDefault } from '../../context/ErrorContext';
 import { AddressConstant, ErrorConstant } from './Sidebarhelper';
 import { DiscardInput, DiscardError, checkInput, getItemTotal } from './SaveLogic';
-import { CreateEditInvoice, CreateInvoice } from '../../helpers/Api';
+import { CreateEditInvoice, CreateInvoice, SaveNsend } from '../../helpers/Api';
 import { useNavigate } from 'react-router-dom';
 import { EditInvoiceContextDefault } from '../../context/EditInvoiceContext';
+import { on } from 'events';
 
 
 interface SideBarModalType extends SideBarModalProps {
@@ -54,6 +55,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
   const [editInvoice, setEditInvoice] = useContext(EditInvoiceContextDefault)
   const [loading, setLoading] = useState<boolean>(false)
   const [saveDraftLoading, setSaveDraftLoading] = useState<boolean>(false)
+  const [saveNsendLoading, setSaveNsendLoading] = useState<boolean>(false)
 
   function handleClickOutside(
     event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
@@ -156,7 +158,30 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
                   }}
                 />
-                <SaveSend handleClick={() => console.log('handle click')} />
+                <SaveSend title={'Save & Send'} loading={saveNsendLoading} handleClick={() => {
+                  if (errorChecker()) {
+                    setSaveNsendLoading(true)
+                    const total = getItemTotal(info.items)
+                    const saveDraftInfo = { ...info, total, status: "pending", paymentDue: info?.invoiceDate }
+
+                    console.log("save and send draft button ", saveDraftInfo)
+
+
+                    SaveNsend(saveDraftInfo).then(data => {
+                      console.log("return data is ", data)
+                      setSaveNsendLoading(false)
+                      onClose()
+                      navigate(`/invoice/${data?.data}`)
+
+                    }).catch(err => {
+                      console.error(err)
+                      alert(err)
+                    })
+
+                    setSaveNsendLoading(false)
+
+                  }
+                }} />
               </div>
             </div>
           ) : (
@@ -164,6 +189,11 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
               <div className="discard"></div>
 
               <div className="btn-footer-left">
+                <EditButton
+                  title='cancel'
+                  handleClick={() => onClose()}
+                />
+
                 <SaveDraftButton
                   label={"Save"}
                   loading={saveDraftLoading}
@@ -195,7 +225,6 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
                   }}
                 />
-                <SaveSend handleClick={() => console.log('handle click')} />
               </div>
             </div>
           )}

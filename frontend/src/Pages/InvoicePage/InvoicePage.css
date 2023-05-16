@@ -14,6 +14,10 @@
   height: 100%;
 }
 
+.invoice-edit-main {
+  width: 100%;
+}
+
 .invoice-empty {
   display: inline-block;
 }
@@ -83,7 +87,7 @@
   }
 
   .invoice-sub-main {
-    margin-right: 30px;
+    margin-right: 15px;
   }
   .invoice-subtitle::before {
     content: '';
@@ -91,5 +95,12 @@
 
   .invoice-subtitle::after {
     content: 'invoices';
+  }
+}
+
+@media (max-width: 300px) {
+  .invoice-edit-main {
+    width: 85%;
+    margin-right: 20px;
   }
 }

@@ -32,23 +32,25 @@ export const EditInvoicePage: React.FC = (): JSX.Element => {
     <>
       <div className="invoice-layout">
         <div className="invoice-main">
-          <Navigator
-            handleClick={() => {
-              const defaultError = DiscardError(error)
-              setError(defaultError)
-              setInfo({ ...AddressConstant })
-              navigate(-1)
-            }}
-          />
-          <EditInvoiceMainComponent
-            id={String(id)}
-            status={EditInvoiceData ? EditInvoiceData?.status : null}
-            handleOpen={() => setOpen(true)}
-            editInvoice={EditInvoiceData || null}
-            handleEditInvoice={setEditInvoiceData}
-          />
+          <div className='invoice-edit-main'>
+            <Navigator
+              handleClick={() => {
+                const defaultError = DiscardError(error)
+                setError(defaultError)
+                setInfo({ ...AddressConstant })
+                navigate(-1)
+              }}
+            />
+            <EditInvoiceMainComponent
+              id={String(id)}
+              status={EditInvoiceData ? EditInvoiceData?.status : null}
+              handleOpen={() => setOpen(true)}
+              editInvoice={EditInvoiceData || null}
+              handleEditInvoice={setEditInvoiceData}
+            />
 
-          <EditInvoiceDatailComponent data={EditInvoiceData || null} />
+            <EditInvoiceDatailComponent data={EditInvoiceData || null} />
+          </div>
         </div>
       </div>
       <SideBarModal
