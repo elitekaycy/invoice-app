@@ -55,6 +55,27 @@ export function CreateInvoice(invoice: InvoiceGetFromClientType): Promise<any> {
     });
 }
 
+export function SaveNsend(invoice: InvoiceGetFromClientType): Promise<any> {
+  return fetch(`${host}/send`, {
+    method: 'POST',
+    body: JSON.stringify(invoice),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} - ${response.statusText}`);
+      }
+
+      return response.json();
+    })
+    .catch((error) => {
+      console.error(`Error fetching data: ${error}`);
+      throw error;
+    });
+}
+
 //mark as paid function
 export function MarkAsPaid(id: Number): Promise<any> {
   return fetch(`${host}/mark/${id}`, {

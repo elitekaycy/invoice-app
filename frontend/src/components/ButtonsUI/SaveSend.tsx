@@ -1,13 +1,21 @@
 import React from 'react';
 import './ButtonUI.css';
 import { BtnProps } from './types';
+import Spinner from '../Spinner/Spinner';
 
-export const SaveSend: React.FC<BtnProps> = ({
+interface SaveNsendTypes extends BtnProps {
+  title: string,
+  loading: boolean
+}
+
+export const SaveSend: React.FC<SaveNsendTypes> = ({
   handleClick,
-}: BtnProps): JSX.Element => {
+  title,
+  loading
+}: SaveNsendTypes): JSX.Element => {
   return (
     <button className="btn-default mrkbtn" onClick={handleClick}>
-      <h3 className="invoice-h3-small btn-center btn-white">Save & Send</h3>
+      <h3 className="invoice-h3-small btn-center btn-white">{loading ? <Spinner /> : title}</h3>
     </button>
   );
 };
