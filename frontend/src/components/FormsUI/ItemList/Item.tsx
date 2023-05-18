@@ -38,8 +38,8 @@ export const Item: React.FC<ItemListType> = ({
 
   return (
     <>
-      <tr className="">
-        <td className='text-center'>
+      <tr className="item-tr">
+        <td className='text-center text-pd'>
           <input
             required
             type="text"
@@ -55,7 +55,7 @@ export const Item: React.FC<ItemListType> = ({
               }`}
           />
         </td>
-        <td className='text-center'>
+        <td className='text-center text-pd'>
           <input
             required
             type="string"
@@ -70,7 +70,7 @@ export const Item: React.FC<ItemListType> = ({
             }}
           />
         </td>
-        <td className='text-center'>
+        <td className='text-center text-pd'>
           <input
             required
             type="number"
@@ -85,7 +85,7 @@ export const Item: React.FC<ItemListType> = ({
             }}
           />
         </td>
-        <td className='text-center'>
+        <td className='text-center text-pd'>
           <span
             className={`invoice-h3-small ${theme?.theme === 'light' ? 'text-light' : 'text-dark'
               }`}
@@ -99,7 +99,7 @@ export const Item: React.FC<ItemListType> = ({
             newInfo.items = newInfo?.items.filter((item, idx) => idx !== id);
             setItem(newInfo);
           }}
-          className="item-delete text-center"
+          className="item-delete text-center text-pd"
         >
           <img src={deleteIcon} alt="delete" />
         </td>
