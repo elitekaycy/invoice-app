@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layout, SideNav } from './components';
 import { InvoiceRoute } from './Pages';
 
 function App() {
+
+  useEffect(() => {
+    document.title = "invoice app"
+  })
+
   return (
     <Layout>
       <SideNav />

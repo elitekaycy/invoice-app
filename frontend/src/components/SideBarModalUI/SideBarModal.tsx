@@ -194,8 +194,8 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
                   handleClick={() => onClose()}
                 />
 
-                <SaveDraftButton
-                  label={"Save"}
+                <SaveSend
+                  title={"Save"}
                   loading={saveDraftLoading}
                   handleClick={() => {
                     setSaveDraftLoading(true)
