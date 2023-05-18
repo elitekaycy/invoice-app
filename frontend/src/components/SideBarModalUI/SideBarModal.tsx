@@ -194,14 +194,14 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
                   handleClick={() => onClose()}
                 />
 
-                <SaveDraftButton
-                  label={"Save"}
+                <SaveSend
+                  title={"Save"}
                   loading={saveDraftLoading}
                   handleClick={() => {
+                    setSaveDraftLoading(true)
                     //save draft code
                     if (errorChecker()) {
 
-                      setSaveDraftLoading(true)
                       const total = getItemTotal(info.items)
 
                       const new_edit_invoice = { ...info, status: data?.status, paymentDue: info?.invoiceDate, total }
@@ -221,7 +221,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
                       setSaveDraftLoading(false)
                     }
-
+                    setSaveDraftLoading(true)
 
                   }}
                 />
