@@ -28,7 +28,16 @@
   padding: 8px;
   width: 100%;
 }
+.t-total {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 78px;
+}
 
+.t-del {
+  margin-top: 25px;
+}
 .itm-qty {
   max-width: 46px;
   padding: 8px;
@@ -61,6 +70,10 @@
   text-align: center;
 }
 
+.text-pd {
+  padding: 8px;
+}
+
 .item-label {
   color: var(--invoice-dark-default);
   display: flex;
@@ -83,6 +96,22 @@
   width: 100%;
   text-align: center;
   height: 48px;
+}
+
+.item-name-input-sm {
+  width: 100%;
+  height: 48px;
+}
+
+.item-height {
+  height: 48px;
+}
+
+.item-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .item-qty {
@@ -115,4 +144,29 @@
 
 .item-error {
   color: var(--invoice-red);
+}
+
+.item-show {
+  display: none;
+}
+
+.item-hidden {
+  display: flex;
+}
+
+@media (max-width: 400px) {
+  .item-show {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .item-sm {
+    width: 100%;
+  }
+
+  .item-hidden {
+    display: none;
+  }
 }
