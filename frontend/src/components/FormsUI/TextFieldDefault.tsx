@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import './FormsUI.css';
 import { ThemeContextDefault } from '../../context/ThemeContext';
-import { type } from 'os';
 
 // wrap represents whether the width should be fixed or not
 
