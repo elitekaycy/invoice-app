@@ -64,7 +64,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   }, [dropdownSelectRef]);
 
   return (
-    <div className="flex dropdown-container">
+    <div className="dropdown-container">
       <label className={'invoice-body-1 label'} htmlFor="dropdown">
         {label}
       </label>

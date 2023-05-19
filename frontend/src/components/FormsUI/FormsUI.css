@@ -8,14 +8,21 @@
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  flex-wrap: wrap;
   align-items: center;
+  margin-bottom: 5px;
+  gap: 22px;
 }
 
 .flex {
   flex: 1 1 50%;
   width: 100%;
   margin-bottom: 20px;
+  flex-direction: row;
+}
+
+.dropdown-container {
+  max-width: 400px;
+  width: 100%;
 }
 
 .input-date-picker {
@@ -70,7 +77,7 @@
 .select-drop {
   height: 48px;
   border-radius: 4px;
-  max-width: 150px;
+  max-width: 240px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -234,6 +241,9 @@
   align-items: center;
   gap: 20px;
 }
+.dropdown-select {
+  width: 100%;
+}
 
 @media (max-width: 765px) {
   .input-date-picker {
@@ -300,7 +310,6 @@
   }
 }
 
-//dropdown
 .dropdown-select {
   position: relative;
   display: inline-block;
@@ -312,8 +321,8 @@
   width: 100%;
   z-index: 20;
   border-radius: 4px;
-  padding: 8px;
-  max-width: 150px;
+  padding: 2px;
+  max-width: 230px;
 }
 
 .dropdown-menu-light {
@@ -340,6 +349,6 @@
 .dropdown-option {
   cursor: pointer;
   padding: 10px;
-  width: 100%;
-  border-bottom: 0.5px solid var(--invoice-light);
+  width: 90%;
+  border-bottom: 0.2px solid var(--invoice-light);
 }

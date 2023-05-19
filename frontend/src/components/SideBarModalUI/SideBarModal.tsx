@@ -169,6 +169,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
                     }).catch(err => {
                       console.error(err)
+                      setSaveNsendLoading(false)
                       alert(err)
                     })
 
@@ -192,9 +193,9 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
                   title={"Save"}
                   loading={saveDraftLoading}
                   handleClick={() => {
-                    setSaveDraftLoading(true)
                     //save draft code
                     if (errorChecker()) {
+                      setSaveDraftLoading(true)
 
                       const total = getItemTotal(info.items)
 
