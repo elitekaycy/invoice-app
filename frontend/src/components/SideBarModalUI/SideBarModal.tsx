@@ -121,7 +121,6 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
                     setInfo(defaultInput)
                     setError(defaultError)
-                    console.log('edit button clicked', info, error)
                   }}
                 />
               </div>
@@ -137,8 +136,6 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
                       setLoading(true)
                       const total = getItemTotal(info.items)
                       const saveDraftInfo = { ...info, total, status: "Draft", paymentDue: info?.invoiceDate }
-
-                      console.log("save draft button ", saveDraftInfo)
 
 
                       CreateInvoice(saveDraftInfo).then(data => {
@@ -164,11 +161,8 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
                     const total = getItemTotal(info.items)
                     const saveDraftInfo = { ...info, total, status: "pending", paymentDue: info?.invoiceDate }
 
-                    console.log("save and send draft button ", saveDraftInfo)
-
 
                     SaveNsend(saveDraftInfo).then(data => {
-                      console.log("return data is ", data)
                       setSaveNsendLoading(false)
                       onClose()
                       navigate(`/invoice/${data?.data}`)
@@ -206,11 +200,8 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
                       const new_edit_invoice = { ...info, status: data?.status, paymentDue: info?.invoiceDate, total }
 
-                      console.log("new edit is ", new_edit_invoice)
-
                       CreateEditInvoice(Number(id), new_edit_invoice).then(data => {
                         setSaveDraftLoading(false)
-                        console.log("new edit ", new_edit_invoice)
                         onClose()
                         navigate(0)
                       }).catch(err => {

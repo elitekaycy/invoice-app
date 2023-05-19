@@ -1,32 +1,40 @@
 import * as nodemailer from "nodemailer";
 import { NextFunction, Request, Response } from "express";
 import { InvoiceGetFromClientType } from "@/types";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export async function sendTestEmail(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  const testAccount = await nodemailer.createTestAccount();
   const { clientEmail, clientName }: InvoiceGetFromClientType = req.body;
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false,
+    service: "outlook",
     auth: {
-      user: testAccount.user,
-      pass: testAccount.pass,
+      user: "dicksonanyaele1234@gmail.com",
+      pass: String(process.env.MAILER_PWD),
     },
   });
 
-  const info = await transporter.sendMail({
-    from: "sender@example.com",
+  const mailOptions = {
+    from: "dicksonanyaele1234@gmail.com",
     to: clientEmail,
-    subject: "Test Email",
-    text: `<h1>new invoice for ${clientName} </>`,
-  });
+    subject: `Invoice to ${clientName}`,
+    text: `new invoice created awaiting approval ${req.protocol}://${req.get(
+      "host"
+    )}invoice`,
+  };
 
-  console.log("Test email sent: ", nodemailer.getTestMessageUrl(info));
-  next();
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err) {
+      next(err);
+    } else {
+      req.body.email = info.response;
+      next();
+    }
+  });
 }
