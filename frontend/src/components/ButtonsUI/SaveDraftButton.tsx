@@ -21,7 +21,9 @@ export const SaveDraftButton: React.FC<SButton> = ({
       className={`btn-md ${theme?.theme === 'light' ? 'draft-btn-light' : 'draft-btn-dark'
         }`}
     >
-      <h3 className={`btn-center invoice-h3-small`}>{loading ? <Spinner /> : label}</h3>
+      {loading ? <Spinner /> : (
+        <h3 className={`btn-center invoice-h3-small`}>{label}</h3>
+      )}
     </button>
   );
 };

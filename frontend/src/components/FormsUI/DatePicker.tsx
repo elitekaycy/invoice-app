@@ -27,7 +27,7 @@ const Datepicker: React.FC<DatePickerProps> = ({
   }
 
   return (
-    <div className="flex">
+    <div className="dropdown-container">
       <label className={'invoice-body-1 label'} htmlFor="dropdown">
         {label}
       </label>

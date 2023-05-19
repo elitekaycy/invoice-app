@@ -15,7 +15,9 @@ export const SaveSend: React.FC<SaveNsendTypes> = ({
 }: SaveNsendTypes): JSX.Element => {
   return (
     <button className="btn-default mrkbtn" onClick={handleClick}>
-      <h3 className="invoice-h3-small btn-center btn-white">{loading ? <Spinner /> : title}</h3>
+      {loading ? <Spinner /> : (
+        <h3 className="invoice-h3-small btn-center btn-white">{title}</h3>
+      )}
     </button>
   );
 };
