@@ -74,7 +74,6 @@ export const InvoicePage: React.FC = (): JSX.Element => {
                 handleClick={() => {
                   document.body.classList.add('no-scroll');
                   setIsInvoiceOpen(true);
-                  console.log('handle click clicked ', isInvoiceOpen);
                 }}
               />
             </div>

@@ -9,6 +9,7 @@ export const InvoiceCreate = function (
 ) {
   try {
     const newInvoice: InvoiceGetFromClientType = _req?.body;
+    console.log("req email is ", _req.body.email);
 
     client.query(
       `INSERT INTO invoice 

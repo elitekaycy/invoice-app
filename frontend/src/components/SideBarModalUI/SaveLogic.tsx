@@ -82,9 +82,6 @@ export const checkInput = (form: FillFormType, errorA: FillFormTypeError, setErr
     checkNestedInput(form, "senderAddress", error, Errors, setError, '', true, "country")
     checkNestedInput(form, "senderAddress", error, Errors, setError, '', true, "streetAddress")
 
-    console.log("error is ", error)
-    console.log("form is ", form)
-    console.log("errors constant ", Errors)
     return Errors.length === 0
 
 }

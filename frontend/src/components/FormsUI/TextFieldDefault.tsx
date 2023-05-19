@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import './FormsUI.css';
 import { ThemeContextDefault } from '../../context/ThemeContext';
+import { type } from 'os';
 
 // wrap represents whether the width should be fixed or not
 
@@ -9,6 +10,7 @@ interface TextFieldProps {
   value: string;
   error: boolean;
   wrap: boolean;
+  type: string
   responsive: boolean; // represents whether the input should be responsive
   handleChange: (e: any) => void;
 }
@@ -20,6 +22,7 @@ export const TextFieldDefault: React.FC<TextFieldProps> = ({
   handleChange,
   wrap,
   responsive,
+  type
 }: TextFieldProps): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
 
@@ -39,27 +42,25 @@ export const TextFieldDefault: React.FC<TextFieldProps> = ({
           handleChange(e);
         }}
         className={`
-        ${
-          wrap && responsive
+        ${wrap && responsive
             ? 'text-field-wrap-responsive'
             : wrap && !responsive
-            ? 'text-field-wrap'
-            : responsive && !wrap
-            ? 'text-field-responsive'
-            : 'text-field-responsive'
-        }
-        text-field ${
-          theme?.theme === 'light'
+              ? 'text-field-wrap'
+              : responsive && !wrap
+                ? 'text-field-responsive'
+                : 'text-field-responsive'
+          }
+        text-field ${theme?.theme === 'light'
             ? error
               ? 'text-field-error-light'
               : 'text-field-light'
             : !error
-            ? 'text-field-dark'
-            : 'text-field-error-dark'
-        }`}
+              ? 'text-field-dark'
+              : 'text-field-error-dark'
+          }`}
         name={label}
         id={label}
-        type="text"
+        type={type}
       />
     </div>
   );

@@ -55,6 +55,7 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data, fieldError }: Sid
         <FormHeader text={'Bill From'} />
 
         <TextFieldDefault
+          type='text'
           wrap={false}
           responsive={true}
           value={info['senderAddress']['streetAddress']}
@@ -69,6 +70,7 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data, fieldError }: Sid
           <div className="inner-constraint">
             <TextFieldDefault
               wrap={true}
+              type='text'
               responsive={false}
               label="City"
               value={info['senderAddress']['city']}
@@ -80,6 +82,7 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data, fieldError }: Sid
 
             <TextFieldDefault
               wrap={true}
+              type='text'
               responsive={false}
               label="Post Code"
               value={info['senderAddress']['postCode']}
@@ -98,6 +101,7 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data, fieldError }: Sid
 
           <div className="inner-end-constraint">
             <TextFieldDefault
+              type='text'
               wrap={true}
               responsive={true}
               label="Country"
@@ -120,6 +124,7 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data, fieldError }: Sid
 
         <TextFieldDefault
           wrap={false}
+          type='text'
           responsive={false}
           label="Client's Name"
           value={info.clientName}
@@ -131,6 +136,7 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data, fieldError }: Sid
 
         <TextFieldDefault
           wrap={false}
+          type={"email"}
           responsive={false}
           label="Client's Email"
           value={info?.clientEmail}
@@ -141,6 +147,7 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data, fieldError }: Sid
         />
 
         <TextFieldDefault
+          type='text'
           wrap={false}
           responsive={false}
           label="Street Address"
@@ -154,6 +161,7 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data, fieldError }: Sid
         <div className="form-constraint-container">
           <div className="inner-constraint">
             <TextFieldDefault
+              type='text'
               wrap={true}
               responsive={false}
               label="City"
@@ -165,6 +173,7 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data, fieldError }: Sid
             />
 
             <TextFieldDefault
+              type='text'
               wrap={true}
               responsive={false}
               label="Post Code"
@@ -178,6 +187,7 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data, fieldError }: Sid
 
           <div className="inner-end-constraint">
             <TextFieldDefault
+              type='text'
               wrap={true}
               responsive={true}
               label="Country"
@@ -204,6 +214,7 @@ export const SideBarForm: React.FC<SideBarFormType> = ({ data, fieldError }: Sid
         </div>
 
         <TextFieldDefault
+          type='text'
           wrap={false}
           responsive={true}
           label="Project Description"
