@@ -154,6 +154,11 @@
   display: flex;
 }
 
+.itm-del:hover {
+  fill: var(--invoice-red);
+  filter: hue-rotate(80deg);
+}
+
 @media (max-width: 400px) {
   .item-show {
     display: flex;

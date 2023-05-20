@@ -13,7 +13,9 @@ export const DeleteButton: React.FC<DeleteBtnExtended> = ({
 }: DeleteBtnExtended): JSX.Element => {
   return (
     <button className="btn-default delbtn" onClick={handleClick}>
-      <h3 className="invoice-h3-small btn-center btn-white">{loading ? <Spinner /> : 'Delete'}</h3>
+      {loading === true ? <Spinner /> : (
+        <h3 className="invoice-h3-small btn-center btn-white">{'Delete'}</h3>
+      )}
     </button>
   );
 };

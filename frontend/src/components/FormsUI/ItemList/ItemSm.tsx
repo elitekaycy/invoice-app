@@ -25,14 +25,15 @@ export const ItemSm: React.FC<ItemListType> = ({
     setItem,
 }): JSX.Element => {
     const theme = useContext(ThemeContextDefault);
-    const [item, setNewItem] = useState(value);
 
     const { itemName, itemPrice, itemQuantity } = value;
 
-    const handleChange = (e: any, id: any) => {
-        const newInfo = { ...info };
-        let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
-        newInfo.items[itemsIndex]['itemName'] = e.target.value;
+    const handleItemsChange = (e: React.ChangeEvent<HTMLInputElement>, name: string): void => {
+        const newInfo: FillFormType = { ...info };
+        let itemsIndex: number = info?.items.findIndex((obj, idx) => idx === id);
+        let Items: any = newInfo.items
+        Items[itemsIndex][name] = e.target.value;
+        newInfo.items = Items
         setItem(newInfo);
     }
 
@@ -44,7 +45,7 @@ export const ItemSm: React.FC<ItemListType> = ({
                     <div>
                         <input type='text' required name="itemName" value={itemName} className={`item-name-input-sm text-center ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
                             }`}
-                            onChange={(e) => handleChange(e, id)}
+                            onChange={(e) => handleItemsChange(e, "itemName")}
                         />
                     </div>
                 </div>
@@ -61,12 +62,7 @@ export const ItemSm: React.FC<ItemListType> = ({
                                 className={`item-qty ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
                                     }`}
                                 value={itemQuantity}
-                                onChange={(e) => {
-                                    const newInfo = { ...info };
-                                    let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
-                                    newInfo.items[itemsIndex]['itemQuantity'] = e.target.value;
-                                    setItem(newInfo);
-                                }}
+                                onChange={(e) => handleItemsChange(e, "itemQuantity")}
                             />
                         </div>
                     </div>
@@ -82,12 +78,7 @@ export const ItemSm: React.FC<ItemListType> = ({
                                 className={`item-price ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
                                     }`}
                                 value={itemPrice}
-                                onChange={(e) => {
-                                    const newInfo = { ...info };
-                                    let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
-                                    newInfo.items[itemsIndex]['itemPrice'] = Number(e.target.value);
-                                    setItem(newInfo);
-                                }}
+                                onChange={(e) => handleItemsChange(e, "itemPrice")}
                             />
                         </div>
                     </div>

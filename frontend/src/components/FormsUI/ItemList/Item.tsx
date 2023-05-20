@@ -7,7 +7,7 @@ import {
   FillFormTypeError,
   ItemType,
 } from '../../SideBarModalUI/SidebarTypes';
-import { off } from 'process';
+import { InvoiceGetFromClientType } from '../../SideBarModalUI/SidebarTypes';
 
 type ItemListType = {
   key: number;
@@ -25,15 +25,16 @@ export const Item: React.FC<ItemListType> = ({
   setItem,
 }): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
-  const [item, setNewItem] = useState(value);
 
   const { itemName, itemPrice, itemQuantity } = value;
 
-  const parseMoney = (money: number): number => {
-    console.log("type of money is ", typeof money, money)
-    console.log(itemPrice, itemQuantity)
-
-    return money
+  const handleItemsChange = (e: React.ChangeEvent<HTMLInputElement>, name: string): void => {
+    const newInfo: FillFormType = { ...info };
+    let itemsIndex: number = info?.items.findIndex((obj, idx) => idx === id);
+    let Items: any = newInfo.items
+    Items[itemsIndex][name] = e.target.value;
+    newInfo.items = Items
+    setItem(newInfo);
   }
 
   return (
@@ -43,14 +44,8 @@ export const Item: React.FC<ItemListType> = ({
           <input
             required
             type="text"
-            name="itemName"
             value={itemName}
-            onChange={(e) => {
-              const newInfo = { ...info };
-              let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
-              newInfo.items[itemsIndex]['itemName'] = e.target.value;
-              setItem(newInfo);
-            }}
+            onChange={(e) => handleItemsChange(e, "itemName")}
             className={`item-name-input ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
               }`}
           />
@@ -62,12 +57,7 @@ export const Item: React.FC<ItemListType> = ({
             className={`item-qty ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
               }`}
             value={itemQuantity}
-            onChange={(e) => {
-              const newInfo = { ...info };
-              let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
-              newInfo.items[itemsIndex]['itemQuantity'] = e.target.value;
-              setItem(newInfo);
-            }}
+            onChange={(e) => handleItemsChange(e, "itemQuantity")}
           />
         </td>
         <td className='text-center text-pd'>
@@ -77,12 +67,7 @@ export const Item: React.FC<ItemListType> = ({
             className={`item-price ${theme?.theme === 'light' ? 'item-light' : 'item-dark'
               }`}
             value={itemPrice}
-            onChange={(e) => {
-              const newInfo = { ...info };
-              let itemsIndex = info?.items.findIndex((obj, idx) => idx === id);
-              newInfo.items[itemsIndex]['itemPrice'] = Number(e.target.value);
-              setItem(newInfo);
-            }}
+            onChange={(e) => handleItemsChange(e, "itemPrice")}
           />
         </td>
         <td className='text-center text-pd'>
@@ -101,7 +86,7 @@ export const Item: React.FC<ItemListType> = ({
           }}
           className="item-delete text-center text-pd"
         >
-          <img src={deleteIcon} alt="delete" />
+          <img className="itm-del" src={deleteIcon} alt="delete" />
         </td>
       </tr>
     </>
