@@ -28,12 +28,6 @@ export const ItemListContainer: React.FC<ItemType> = ({
 
   return (
     <div className="item-list-container">
-      {/* <div className="item-header">
-        <span className="invoice-body-1 label itm-name">Item name</span>
-        <span className="invoice-body-1 label itm-qty">Qty.</span>
-        <span className="invoice-body-1 label itm-price">Item Price</span>
-        <span className="invoice-body-1 label itm-total">Total</span>
-      </div> */}
       <div className='item-hidden'>
         <table className='item-table'>
           <tbody>

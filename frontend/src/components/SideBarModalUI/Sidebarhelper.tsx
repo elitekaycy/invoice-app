@@ -44,7 +44,7 @@ export const AddressConstant = {
     clientName: '',
     clientEmail: '',
     invoiceDate: '',
-    paymentTerms: null,
+    paymentTerms: 30,
     projectDescription: '',
 }
 

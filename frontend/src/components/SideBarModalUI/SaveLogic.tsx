@@ -18,7 +18,7 @@ export const DiscardInput = (form: FillFormType) => {
     new_form.clientName = ''
     new_form.clientEmail = ''
     new_form.projectDescription = ''
-    new_form.paymentTerms = null
+    new_form.paymentTerms = 30
 
     return new_form
 
@@ -70,7 +70,7 @@ export const checkInput = (form: FillFormType, errorA: FillFormTypeError, setErr
 
     CheckInput(form, "clientName", error, Errors, setError, "")
     CheckInput(form, "clientEmail", error, Errors, setError, "")
-    CheckInput(form, "paymentTerms", error, Errors, setError, null)
+    CheckInput(form, "paymentTerms", error, Errors, setError, 30)
     CheckInput(form, "invoiceDate", error, Errors, setError, "")
     CheckInput(form, "projectDescription", error, Errors, setError, "")
     checkNestedInput(form, "clientAddress", error, Errors, setError, '', true, "postCode")

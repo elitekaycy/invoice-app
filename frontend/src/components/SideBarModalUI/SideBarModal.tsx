@@ -52,7 +52,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
   const [info, setInfo] = useContext(InfoContextDefault)
   const [fieldError, setFieldError] = useState<fieldErrorType>({ field: true, item: false })
   const [error, setError] = useContext(ErrorContextDefault)
-  const [editInvoice, setEditInvoice] = useContext(EditInvoiceContextDefault)
+  // const [editInvoice, setEditInvoice] = useContext(EditInvoiceContextDefault)
   const [loading, setLoading] = useState<boolean>(false)
   const [saveDraftLoading, setSaveDraftLoading] = useState<boolean>(false)
   const [saveNsendLoading, setSaveNsendLoading] = useState<boolean>(false)
@@ -127,7 +127,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
               <div className="btn-footer-left">
                 <SaveDraftButton
-                  label={'Save as Draft'}
+                  label={loading === true ? 'loading..' : 'Save as Draft'}
                   loading={loading}
                   handleClick={() => {
 
@@ -155,7 +155,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
                   }}
                 />
-                <SaveSend title={'Save & Send'} loading={saveNsendLoading} handleClick={() => {
+                <SaveSend title={saveNsendLoading === true ? 'loading...' : 'Save & Send'} loading={saveNsendLoading} handleClick={() => {
                   if (errorChecker()) {
                     setSaveNsendLoading(true)
                     const total = getItemTotal(info.items)
@@ -190,7 +190,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
                 />
 
                 <SaveSend
-                  title={"Save"}
+                  title={saveDraftLoading === true ? "loading..." : "Save"}
                   loading={saveDraftLoading}
                   handleClick={() => {
                     //save draft code

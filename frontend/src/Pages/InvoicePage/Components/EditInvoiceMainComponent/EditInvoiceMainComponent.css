@@ -118,6 +118,11 @@ td {
   align-items: flex-end;
 }
 
+.edit-btn-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
 .invoice-detail-side-reverse {
   display: flex;
   flex-direction: column;
@@ -149,6 +154,7 @@ td {
   flex: 1;
   gap: 10px;
 }
+
 .invoice-child-one {
   display: flex;
   flex-direction: column;
