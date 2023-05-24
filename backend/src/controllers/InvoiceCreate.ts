@@ -9,7 +9,6 @@ export const InvoiceCreate = function (
 ) {
   try {
     const newInvoice: InvoiceGetFromClientType = _req?.body;
-    console.log("req email is ", _req.body.email);
 
     client.query(
       `INSERT INTO invoice 
@@ -87,10 +86,10 @@ export const InvoiceCreate = function (
   }
 };
 
+// mark as paid
 export const MarkAsPaid = (_req: Request, res: Response) => {
   const id: any = _req?.params?.id;
 
-  console.log("got request params ", id, _req?.params);
   try {
     client.query(
       `UPDATE invoice SET status = $1 where id = $2`,

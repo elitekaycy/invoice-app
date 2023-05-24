@@ -73,10 +73,17 @@
   gap: 20px;
 }
 
+@media (max-width: 1000px) {
+  .invoice-main {
+    margin-left: 100px;
+  }
+}
+
 @media (max-width: 765px) {
   .invoice-main {
     margin-top: 60px;
     margin-right: 20px;
+    margin-left: 0px;
   }
 }
 

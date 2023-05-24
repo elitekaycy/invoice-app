@@ -86,7 +86,7 @@ export const ItemListContainer: React.FC<ItemType> = ({
         }}
       />
 
-      {!fieldError.field && <div className='invoice-body-1 item-error'>- all field must be filled</div>}
+      {fieldError.field && <div className='invoice-body-1 item-error'>- all field must be filled</div>}
       {fieldError.item && <div className='invoice-body-1 item-error'>- an item must be added</div>}
 
 
