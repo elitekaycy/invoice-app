@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useMemo } from 'react';
 import './InvoicePage.css';
 import { EditInvoiceMainComponent } from './Components/EditInvoiceMainComponent/EditInvoiceMainComponent';
 import { Navigator } from '../InvoicePage/Components/EditInvoiceMainComponent/Navigator';
@@ -21,11 +21,15 @@ export const EditInvoicePage: React.FC = (): JSX.Element => {
   const [EditInvoiceData, setEditInvoiceData] = useContext(EditInvoiceContextDefault)
   const { id } = useParams();
 
-  useEffect(() => {
+  const FetchInvoice = async () => {
     EditInvoice(Number(id)).then(data => {
       setEditInvoiceData(data?.invoice)
     }).catch(err => console.log(err))
+  }
 
+  const FetchInvoiceCallBack = useMemo(() => FetchInvoice, [])
+  useEffect(() => {
+    FetchInvoiceCallBack()
   }, [])
 
   return (

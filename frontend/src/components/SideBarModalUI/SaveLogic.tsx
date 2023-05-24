@@ -13,6 +13,7 @@ export const DiscardInput = (form: FillFormType) => {
     new_form.clientAddress.country = ''
     new_form.senderAddress.city = ''
     new_form.senderAddress.postCode = ''
+    new_form.invoiceDate = (new Date()).toDateString()
     new_form.senderAddress.streetAddress = ''
     new_form.senderAddress.country = ''
     new_form.clientName = ''
@@ -71,7 +72,6 @@ export const checkInput = (form: FillFormType, errorA: FillFormTypeError, setErr
     CheckInput(form, "clientName", error, Errors, setError, "")
     CheckInput(form, "clientEmail", error, Errors, setError, "")
     CheckInput(form, "paymentTerms", error, Errors, setError, 30)
-    CheckInput(form, "invoiceDate", error, Errors, setError, "")
     CheckInput(form, "projectDescription", error, Errors, setError, "")
     checkNestedInput(form, "clientAddress", error, Errors, setError, '', true, "postCode")
     checkNestedInput(form, "clientAddress", error, Errors, setError, '', true, "city")

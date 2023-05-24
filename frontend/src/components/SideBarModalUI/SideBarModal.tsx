@@ -50,7 +50,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
   const navigate = useNavigate()
 
   const [info, setInfo] = useContext(InfoContextDefault)
-  const [fieldError, setFieldError] = useState<fieldErrorType>({ field: true, item: false })
+  const [fieldError, setFieldError] = useState<fieldErrorType>({ field: false, item: false })
   const [error, setError] = useContext(ErrorContextDefault)
   // const [editInvoice, setEditInvoice] = useContext(EditInvoiceContextDefault)
   const [loading, setLoading] = useState<boolean>(false)
@@ -71,7 +71,8 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
   const errorChecker = () => {
     setFieldError({ field: false, item: false })
     const handleError = checkInput(info, error, setError)
-    setFieldError({ field: handleError, item: info?.items.length === 0 })
+    setFieldError({ field: !handleError, item: info?.items.length === 0 })
+    console.log(fieldError, " field error ", handleError, " handle Error")
 
     return handleError && info?.items.length > 0
   }
@@ -115,7 +116,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
                 <EditButton
                   title={'Discard'}
                   handleClick={() => {
-                    setFieldError({ field: true, item: false })
+                    setFieldError({ field: false, item: false })
                     const defaultInput = DiscardInput(info)
                     const defaultError = DiscardError(error)
 
@@ -130,7 +131,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
                   label={loading === true ? 'loading..' : 'Save as Draft'}
                   loading={loading}
                   handleClick={() => {
-
+                    console.log("draft info ", info)
                     // save
                     if (errorChecker()) {
                       setLoading(true)

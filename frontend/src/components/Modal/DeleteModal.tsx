@@ -29,12 +29,24 @@ export const DeleteModal: React.FC<DeletePropsTypes> = ({
         setIsOpen(false);
     };
 
-    const deleteFunct = (id: Number): void => {
-        setLoading(true)
-        DeleteInvoice(id)
-        handleClose()
-        navigate(-1)
-        setLoading(false)
+    const deleteFunct = async (id: Number) => {
+        try {
+
+            setLoading(true)
+            console.log("working function")
+            DeleteInvoice(id)
+            setTimeout(() => console.log('deleting...'), 2)
+            console.log("function got here...")
+            handleClose()
+            navigate(-1)
+            setLoading(false)
+
+        }
+        catch (err) {
+            setLoading(false)
+            console.error("failed to delete error", err)
+            alert("failed delete error")
+        }
     }
 
     return (
