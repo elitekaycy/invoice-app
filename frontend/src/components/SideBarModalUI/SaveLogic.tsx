@@ -71,7 +71,6 @@ export const checkInput = (form: FillFormType, errorA: FillFormTypeError, setErr
 
     CheckInput(form, "clientName", error, Errors, setError, "")
     CheckInput(form, "clientEmail", error, Errors, setError, "")
-    CheckInput(form, "paymentTerms", error, Errors, setError, 30)
     CheckInput(form, "projectDescription", error, Errors, setError, "")
     checkNestedInput(form, "clientAddress", error, Errors, setError, '', true, "postCode")
     checkNestedInput(form, "clientAddress", error, Errors, setError, '', true, "city")
