@@ -81,5 +81,5 @@ export const InitialEditInfo = (data: InvoiceReturnDataType | null) => {
         }
     }
 
-    return AddressConstant
+    return { ...AddressConstant }
 }
