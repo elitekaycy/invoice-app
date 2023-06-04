@@ -9,6 +9,7 @@
     "prod-start": "export NODE_OPTIONS='--trace-deprecation --abort-on-uncaught-exception' && export NODE_ENV=production && ts-node ./bin/www.ts"
   },
   "dependencies": {
+    "@types/helmet": "^4.0.0",
     "@types/nodemailer": "^6.4.7",
     "@types/pg": "^8.6.6",
     "cookie-parser": "~1.4.4",
@@ -16,6 +17,7 @@
     "debug": "~2.6.9",
     "dotenv": "^16.0.0",
     "express": "~4.16.1",
+    "helmet": "^7.0.0",
     "log4js": "latest",
     "module-alias": "^2.2.2",
     "morgan": "~1.9.1",
