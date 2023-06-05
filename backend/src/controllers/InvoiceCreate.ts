@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import { InvoiceGetFromClientType } from "@/types";
 import { client } from "../db/dbConnnect.";
+import { validationResult } from "express-validator";
 
 export const InvoiceCreate = function (
   _req: Request,
@@ -8,6 +9,12 @@ export const InvoiceCreate = function (
   _next: NextFunction
 ) {
   try {
+    const errors = validationResult(_req);
+
+    if (!errors.isEmpty()) {
+      throw new Error("email validation error");
+    }
+
     const newInvoice: InvoiceGetFromClientType = _req?.body;
 
     client.query(

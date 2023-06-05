@@ -6,10 +6,15 @@ import { invoiceGet, invoiceGetAll } from "../controllers/InvoiceGet";
 import { InvoiceCreate, MarkAsPaid } from "../controllers/InvoiceCreate";
 import { InvoiceEdit } from "../controllers/InvoiceEdit";
 import { sendTestEmail } from "./Mailer";
+import { body } from "express-validator";
 
 const router = express.Router();
 
-router.post("/create", InvoiceCreate);
+router.post(
+  "/create",
+  body("clientEmail").isEmail().normalizeEmail(),
+  InvoiceCreate
+);
 
 router.post("/send", sendTestEmail, InvoiceCreate);
 
