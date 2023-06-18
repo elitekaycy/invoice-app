@@ -15,5 +15,6 @@ export const InvoiceDelete = (_req: Request, res: Response) => {
     });
   } catch (err) {
     console.log(`error caught ${err}`);
+    return res.status(400).send(`error occured ${err}`);
   }
 };
