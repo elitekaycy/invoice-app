@@ -1,4 +1,4 @@
-## Project main
+## INVOICE APP - [Invoice app](https://invoiceapp-elitekaycy.vercel.app/)
 
 progress is hosted here - [check it out](https://invoiceapp-elitekaycy.vercel.app/)
 
@@ -26,3 +26,4 @@ progress is hosted here - [check it out](https://invoiceapp-elitekaycy.vercel.ap
 - node js, express, postgress, Typescript
 - jest and supertest for testing
 - hosted on render
+
