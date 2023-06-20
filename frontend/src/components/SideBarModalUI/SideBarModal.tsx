@@ -156,7 +156,7 @@ export const SideBarModal: React.FC<SideBarModalType> = ({
 
                   }}
                 />
-                <SaveSend title={saveNsendLoading === true ? 'loading...' : 'Save & Send'} loading={saveNsendLoading} handleClick={() => {
+                <SaveSend title={saveNsendLoading ? 'loading...' : 'Save & Send'} loading={saveNsendLoading} handleClick={() => {
                   if (errorChecker()) {
                     setSaveNsendLoading(true)
                     const total = getItemTotal(info.items)

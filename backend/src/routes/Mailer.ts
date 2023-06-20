@@ -15,13 +15,13 @@ export async function sendTestEmail(
   const transporter = nodemailer.createTransport({
     service: "outlook",
     auth: {
-      user: "dicksonanyaele1234@gmail.com",
+      user: String(process.env.MAILER_EMAIL),
       pass: String(process.env.MAILER_PWD),
     },
   });
 
   const mailOptions = {
-    from: "dicksonanyaele1234@gmail.com",
+    from: String(process.env.MAILER_EMAIL),
     to: clientEmail,
     subject: `Invoice to ${clientName}`,
     text: `new invoice created awaiting approval ${req.protocol}://${req.get(
