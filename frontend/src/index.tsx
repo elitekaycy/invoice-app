@@ -9,6 +9,7 @@ import { ErrorContext } from './context/ErrorContext';
 import { InfoContext } from './context/InfoContext';
 import { EditInvoiceContext } from './context/EditInvoiceContext';
 
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

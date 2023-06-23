@@ -85,7 +85,11 @@ export const InvoiceCreate = function (
         });
 
         // pg closes client automatically
-        return res.status(201).json({ status: 201, data: invoiceId });
+        return res.status(201).json({
+          status: 201,
+          data: invoiceId,
+          emailSent: _req.body.emailSent || null,
+        });
       }
     );
   } catch (err) {

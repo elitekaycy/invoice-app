@@ -15,13 +15,13 @@ export async function sendTestEmail(
   const transporter = nodemailer.createTransport({
     service: "outlook",
     auth: {
-      user: String(process.env.MAILER_EMAIL),
+      user: process.env.MAILER_EMAIL,
       pass: String(process.env.MAILER_PWD),
     },
   });
 
   const mailOptions = {
-    from: String(process.env.MAILER_EMAIL),
+    from: process.env.MAILER_EMAIL,
     to: clientEmail,
     subject: `Invoice to ${clientName}`,
     text: `new invoice created awaiting approval ${req.protocol}://${req.get(
@@ -31,10 +31,14 @@ export async function sendTestEmail(
 
   transporter.sendMail(mailOptions, function (err, info) {
     if (err) {
-      next(err);
+      req.body.emailSent = false;
+      next();
     } else {
       req.body.email = info.response;
+      req.body.emailSent = true;
       next();
     }
   });
 }
+
+// create pdf
