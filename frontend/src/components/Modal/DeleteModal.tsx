@@ -33,10 +33,8 @@ export const DeleteModal: React.FC<DeletePropsTypes> = ({
         try {
 
             setLoading(true)
-            console.log("working function")
             DeleteInvoice(id)
-            setTimeout(() => console.log('deleting...'), 2)
-            console.log("function got here...")
+            setTimeout(() => { }, 2)
             handleClose()
             navigate(-1)
             setLoading(false)
