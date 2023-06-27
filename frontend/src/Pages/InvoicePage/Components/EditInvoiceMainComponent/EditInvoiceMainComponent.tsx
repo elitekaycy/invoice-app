@@ -25,16 +25,20 @@ export const EditInvoiceMainComponent: React.FC<EditInvoiceMainCompType> = ({
 }: EditInvoiceMainCompType): JSX.Element => {
   const theme = useContext(ThemeContextDefault);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [isPaidLoading, setIsPaidLoading] = useState<boolean>(false)
 
 
   const MarkasPaidFunct = () => {
     if (editInvoice.status !== 'paid') {
-      MarkAsPaid(Number(id)).then(data => {
+      setIsPaidLoading(true)
+      MarkAsPaid(Number(id), editInvoice.clientemail).then(data => {
         if (data?.created) {
           handleEditInvoice({ ...editInvoice, status: "paid" })
+          setIsPaidLoading(false)
         }
       }).catch(err => {
         console.error(err)
+        setIsPaidLoading(false)
         alert("Error Occured " + err)
       })
     }
@@ -62,7 +66,9 @@ export const EditInvoiceMainComponent: React.FC<EditInvoiceMainCompType> = ({
         <div className="edit-btn-flex">
           <EditButton title="Edit" handleClick={() => handleOpen()} />
           <DeleteButton loading={false} handleClick={() => setIsModalOpen(true)} />
-          <MarkButton handleClick={() => MarkasPaidFunct()} />
+          <MarkButton
+            loading={isPaidLoading}
+            handleClick={() => MarkasPaidFunct()} />
         </div>
       </div>
       <div
@@ -71,7 +77,9 @@ export const EditInvoiceMainComponent: React.FC<EditInvoiceMainCompType> = ({
       >
         <EditButton title="Edit" handleClick={() => handleOpen()} />
         <DeleteButton loading={false} handleClick={() => setIsModalOpen(true)} />
-        <MarkButton handleClick={() => MarkasPaidFunct()} />
+        <MarkButton
+          loading={isPaidLoading}
+          handleClick={() => MarkasPaidFunct()} />
       </div>
       <DeleteModal
         isOpen={isModalOpen}

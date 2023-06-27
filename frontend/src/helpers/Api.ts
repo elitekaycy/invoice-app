@@ -77,9 +77,13 @@ export function SaveNsend(invoice: InvoiceGetFromClientType): Promise<any> {
 }
 
 //mark as paid function
-export function MarkAsPaid(id: Number): Promise<any> {
+export function MarkAsPaid(id: Number, email: string): Promise<any> {
   return fetch(`${host}/mark/${id}`, {
     method: 'PUT',
+    body: JSON.stringify({ email: email }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   })
     .then((response) => {
       if (!response.ok) {

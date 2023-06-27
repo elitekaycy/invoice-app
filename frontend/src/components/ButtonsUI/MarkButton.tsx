@@ -1,13 +1,21 @@
 import React from 'react';
 import './ButtonUI.css';
 import { BtnProps } from './types';
+import Spinner from '../Spinner/Spinner';
 
-export const MarkButton: React.FC<BtnProps> = ({
+interface BtnLoading extends BtnProps {
+  loading: boolean
+}
+
+export const MarkButton: React.FC<BtnLoading> = ({
   handleClick,
-}: BtnProps): JSX.Element => {
+  loading
+}: BtnLoading): JSX.Element => {
   return (
     <button className="btn-default mrkbtn" onClick={handleClick}>
-      <h3 className="invoice-h3-small btn-center btn-white">Mark as Paid</h3>
+      {loading ? <Spinner /> :
+        <h3 className="invoice-h3-small btn-center btn-white">Mark as Paid</h3>
+      }
     </button>
   );
 };
