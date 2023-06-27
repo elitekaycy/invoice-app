@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from "express";
 import { InvoiceGetFromClientType } from "@/types";
 import { client } from "../db/dbConnnect.";
 import { validationResult } from "express-validator";
+import { generatePdf, sendEmailWithAttachment } from "@/routes/Mailer";
 
 export const InvoiceCreate = function (
   _req: Request,
@@ -98,6 +99,7 @@ export const InvoiceCreate = function (
 };
 
 // mark as paid
+// mark as paid to send pdf of all paid
 export const MarkAsPaid = (_req: Request, res: Response) => {
   const id: any = _req?.params?.id;
 
@@ -105,10 +107,15 @@ export const MarkAsPaid = (_req: Request, res: Response) => {
     client.query(
       `UPDATE invoice SET status = $1 where id = $2`,
       ["paid", id],
-      (err, result) => {
+      async (err, result) => {
         if (err) {
           throw new Error(`error ${err?.name}: ${err?.message}`);
         }
+
+        const invoicePaidQuery = "SELECT * FROM invoice WHERE status = 'paid'";
+        const pdfBuffer = await generatePdf(invoicePaidQuery);
+
+        await sendEmailWithAttachment(pdfBuffer, _req.body.email);
 
         res.status(201).send({ created: true, data: id });
       }
