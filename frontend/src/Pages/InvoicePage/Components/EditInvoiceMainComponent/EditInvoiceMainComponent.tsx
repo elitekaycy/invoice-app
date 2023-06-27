@@ -7,6 +7,7 @@ import { DeleteButton } from '../../../../components/ButtonsUI/DeleteButton';
 import { InvoiceReturnDataType } from '../../InvoiceTypes';
 import { MarkAsPaid } from '../../../../helpers/Api';
 import { DeleteModal } from '../../../../components/Modal/DeleteModal';
+import { toast } from 'react-toastify'
 
 type EditInvoiceMainCompType = {
   handleOpen: () => void;
@@ -35,6 +36,11 @@ export const EditInvoiceMainComponent: React.FC<EditInvoiceMainCompType> = ({
         if (data?.created) {
           handleEditInvoice({ ...editInvoice, status: "paid" })
           setIsPaidLoading(false)
+          if (data?.emailSent) {
+            toast.success(`paid invoices pdf sent to ${editInvoice.clientemail} `, {
+              position: toast.POSITION.TOP_CENTER
+            })
+          }
         }
       }).catch(err => {
         console.error(err)
