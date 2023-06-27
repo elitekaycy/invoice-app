@@ -115,9 +115,14 @@ export const MarkAsPaid = (_req: Request, res: Response) => {
         const invoicePaidQuery = "SELECT * FROM invoice WHERE status = 'paid'";
         const pdfBuffer = await generatePdf(invoicePaidQuery);
 
-        await sendEmailWithAttachment(pdfBuffer, _req.body.email);
+        const isSentEmail = await sendEmailWithAttachment(
+          pdfBuffer,
+          _req.body.email
+        );
 
-        res.status(201).send({ created: true, data: id });
+        res
+          .status(201)
+          .send({ created: true, data: id, emailSent: isSentEmail });
       }
     );
   } catch (err) {

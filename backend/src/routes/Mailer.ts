@@ -93,6 +93,8 @@ export async function sendEmailWithAttachment(
     ],
   };
 
-  await transporter.sendMail(mailOptions);
+  const res = await transporter.sendMail(mailOptions);
+  if (res) return true;
+  return false;
   console.log("Email sent successfully!");
 }
