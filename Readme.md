@@ -4,9 +4,9 @@ progress is hosted here - [check it out](https://invoiceapp-elitekaycy.vercel.ap
 
 # How to run backend
 
-- move to product directory
+move to product directory
     `cd backend`
-- check the sample.env and provide the neccessary details (mailer_email preferrably outlook for less security restrictions)
+check the sample.env and provide the neccessary details (mailer_email preferrably outlook for less security restrictions)
   `   DB_PORT=
       DB_HOST=
       DB_DATABASE=
@@ -15,10 +15,10 @@ progress is hosted here - [check it out](https://invoiceapp-elitekaycy.vercel.ap
       MAILER_PWD=
       MAILER_EMAIL=
   `
-- create an env in the backend folder directory and provide the correct details from the sample.env file
-- run npm install
+create an env in the backend folder directory and provide the correct details from the sample.env file
+run npm install
     ` > npm install`
-- run npm start
+run npm start
      ` > npm start`
 
 # How to run frontend
