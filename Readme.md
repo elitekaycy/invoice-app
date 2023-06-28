@@ -4,7 +4,8 @@ progress is hosted here - [check it out](https://invoiceapp-elitekaycy.vercel.ap
 
 # How to run backend
 
-- cd/backend
+- move to product directory
+  `cd backend`
 - check the sample.env and provide the following details
 - create an env in the backend folder directory and provide the correct details from the sample.env file
 - run npm install
