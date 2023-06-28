@@ -39,16 +39,16 @@ progress is hosted here - [check it out](https://invoiceapp-elitekaycy.vercel.ap
       `
 - run npm start
 
-   `
-    > npm start
-  `
+   ` > npm start `
 
 ### Tools used in the frontend
+===
 
 - React, typescript, Node js
 - hosted on vercel
 
 ### Tools used in the backend
+___
 
 - node js, express, postgress, Typescript
 - jest and supertest for testing
