@@ -45,6 +45,11 @@
   color: #dfe3fa;
 }
 
+.text-center {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
 .invoice-sub-text-span {
   font-weight: 600;
 }

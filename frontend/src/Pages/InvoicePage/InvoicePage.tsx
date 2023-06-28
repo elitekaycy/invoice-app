@@ -78,7 +78,12 @@ export const InvoicePage: React.FC = (): JSX.Element => {
               />
             </div>
           </div>
-          <div>{loading ? <Spinner /> : null}</div>
+          <div>{loading ? (
+            <div>
+              <div className={`invoice-body-2 text-center
+              ${theme?.theme === 'light' ? '' : 'invoice-main-text-dark'}`}>this might take a while to load first time...</div>
+              <Spinner />
+            </div>) : null}</div>
           <div className="invoice-sub-main">
             {invoices?.length > 0 &&
               filterData().map((invoice) => {
