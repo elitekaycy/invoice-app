@@ -42,7 +42,7 @@ progress is hosted here - [check it out](https://invoiceapp-elitekaycy.vercel.ap
    ` > npm start `
 
 ### Tools used in the frontend
-===
+___
 
 - React, typescript, Node js
 - hosted on vercel
