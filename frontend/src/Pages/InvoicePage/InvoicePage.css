@@ -34,6 +34,20 @@
   justify-content: space-between;
   align-items: center;
 }
+.invoice-sub-msg {
+  margin-top: 10px;
+}
+.invoice-sub-light {
+  color: #888eb0;
+}
+
+.invoice-sub-dark {
+  color: #dfe3fa;
+}
+
+.invoice-sub-text-span {
+  font-weight: 600;
+}
 
 .invoice-main-text {
   color: var(--invoice-black);

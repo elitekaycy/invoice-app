@@ -96,6 +96,10 @@ export const InvoicePage: React.FC = (): JSX.Element => {
             {invoices.length <= 0 ? (
               <div className="invoice-empty">
                 <img src={emptyInvoice} alt="invoice-page" />
+                <div className={`${theme?.theme === 'light' ? '' : 'invoice-main-text-dark'}`}>
+                  <div className='invoice-h3'>There is nothing here</div>
+                  <div className={`invoice-body-1 invoice-sub-msg ${theme?.theme === "light" ? 'invoice-sub-light' : 'invoice-sub-dark'}`}>create an invoice by clicking the <br /> <span className={`invoice-sub-text-span`}>New Invoice</span> button and get started</div>
+                </div>
               </div>
             ) : (
               ''
