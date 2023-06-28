@@ -4,8 +4,8 @@ progress is hosted here - [check it out](https://invoiceapp-elitekaycy.vercel.ap
 
 # How to run backend
 
-move to product directory
-    `cd backend`
+move to product directory.
+    `cd backend`.
 check the sample.env and provide the neccessary details (mailer_email preferrably outlook for less security restrictions)
   `   DB_PORT=
       DB_HOST=
